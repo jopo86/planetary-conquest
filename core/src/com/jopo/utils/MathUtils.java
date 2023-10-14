@@ -1,0 +1,211 @@
+package com.jopo.utils;
+
+public class MathUtils {
+
+    public MathUtils() {}
+
+    public static abstract class Shape {
+        protected int x;
+        protected int y;
+        protected Point center;
+
+        public void setX(int x) {
+            this.x = x;
+            refreshCenter();
+        }
+
+        public void setY(int y) {
+            this.y = y;
+            refreshCenter();
+        }
+
+        public void setPosition(int x, int y) {
+            this.x = x;
+            this.y = y;
+            refreshCenter();
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public Point getCenter() {
+            return center;
+        }
+
+        public int getCenterX() {
+            return center.x;
+        }
+
+        public int getCenterY() {
+            return center.y;
+        }
+
+        protected abstract void refreshCenter();
+    }
+    public static class Point extends Shape {
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void set(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void set(Point pt) {
+            x = pt.x;
+            y = pt.y;
+        }
+
+        @Override
+        protected void refreshCenter() {}
+    }
+    public static class Rectangle extends Shape {
+        private int width;
+        private int height;
+        private int perimeter;
+
+        public Rectangle(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            center = new Point(0, 0);
+            refreshCenter();
+            refreshPerimeter();
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public int getPerimeter() {
+            return perimeter;
+        }
+
+        public void setWidth(int width) {
+            this.width = width;
+            refreshPerimeter();
+            refreshCenter();
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
+            refreshPerimeter();
+            refreshCenter();
+        }
+
+        @Override
+        protected void refreshCenter() {
+            center.set(x + width / 2, y + height / 2);
+        }
+
+        private void refreshPerimeter() {
+            perimeter = 2 * (width + height);
+        }
+    }
+    public static class Circle extends Shape {
+        private int radius;
+        private int diameter;
+        private float area;
+        private float circumference;
+
+        public Circle(int x, int y, int radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            center = new Point(0, 0);
+            refreshCenter();
+            refreshDiameter();
+            refreshArea();
+            refreshCircumference();
+        }
+
+        public int getRadius() {
+            return radius;
+        }
+
+        public int getDiameter() {
+            return diameter;
+        }
+
+        public float getArea() {
+            return area;
+        }
+
+        public float getCircumference() {
+            return circumference;
+        }
+
+        public void setRadius(int radius) {
+            this.radius = radius;
+            refreshDiameter();
+            refreshCenter();
+            refreshArea();
+            refreshCircumference();
+        }
+
+        private void refreshDiameter() {
+            diameter = 2 * radius;
+        }
+
+        @Override
+        protected void refreshCenter() {
+            center.set(x + radius, y + radius);
+        }
+
+        private void refreshArea() {
+            area = (float)(Math.PI * (double)(radius * radius));
+        }
+
+        private void refreshCircumference() {
+            area = (float)(2.0 * Math.PI * (double)radius);
+        }
+    }
+
+    public static float distance(Point a, Point b) {
+        return (float)Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+    }
+    public static float distance(Point pt, int x, int y) {
+        return (float)Math.sqrt(Math.pow(x - pt.x, 2) + Math.pow(y - pt.y, 2));
+    }
+    public static float distance(int x1, int y1, int x2, int y2) {
+        return (float)Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public static boolean hit(Point pt, Rectangle rect) {
+        return (pt.x >= rect.x && pt.x <= rect.x + rect.width && pt.y >= rect.y && pt.y <= rect.y + rect.height);
+    }
+    public static boolean hit(Point pt, Circle circ) {
+        return (distance(pt, circ.center) <= circ.radius);
+    }
+    public static boolean hit(Rectangle rect1, Rectangle rect2) {
+        return (rect1.x + rect1.width >= rect2.x && rect1.x <= rect2.x + rect2.width && rect1.y + rect1.height >= rect2.y && rect1.y <= rect2.y + rect2.height);
+    }
+    public static boolean hit(Circle circ1, Circle circ2) {
+        return (distance(circ1.center, circ2.center) <= circ1.radius + circ2.radius);
+    }
+    public static boolean hit(Rectangle rect, Circle circ) {
+        int testX = circ.getCenterX();
+        int testY = circ.getCenterY();
+
+        if (circ.getCenterX() < rect.x) testX = rect.x;
+        else if (circ.getCenterX() > rect.x + rect.width) testX = rect.x + rect.width;
+
+        if (circ.getCenterY() < rect.y) testY = rect.y;
+        else if (circ.getCenterY() > rect.y + rect.height) testY = rect.y + rect.height;
+
+        return (distance(circ.getCenter(), testX, testY) <= circ.radius);
+    }
+}

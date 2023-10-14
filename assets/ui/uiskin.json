@@ -1,0 +1,43 @@
+{
+	BitmapFont: {
+		pixellari-16: {
+			file: ..\\fonts\\pixellari\\pixellari-16.fnt
+		}
+		pixellari-32: {
+			file: ..\\fonts\\pixellari\\pixellari-32.fnt
+		}
+		pixellari-48: {
+			file: ..\\fonts\\pixellari\\pixellari-48.fnt
+		}
+		pixellari-64: {
+			file: ..\\fonts\\pixellari\\pixellari-64.fnt
+		}
+		pixellari-80: {
+			file: ..\\fonts\\pixellari\\pixellari-80.fnt
+		}
+		pixellari-96: {
+			file: ..\\fonts\\pixellari\\pixellari-96.fnt
+		}
+	}
+
+	Color: {
+		white: 		{ r: 1.0f, g: 1.0f, b: 1.0f, a: 1.0f }
+		black: 		{ r: 0.0f, g: 0.0f, b: 0.0f, a: 1.0f }
+		red: 		{ r: 1.0f, g: 0.0f, b: 0.0f, a: 1.0f }
+		orange: 	{ r: 1.0f, g: 0.5f, b: 0.0f, a: 1.0f }
+		yellow: 	{ r: 1.0f, g: 1.0f, b: 0.0f, a: 1.0f }
+		green: 		{ r: 0.0f, g: 1.0f, b: 0.0f, a: 1.0f }
+		cyan: 		{ r: 0.0f, g: 1.0f, b: 1.0f, a: 1.0f }
+		blue: 		{ r: 0.0f, g: 0.0f, b: 1.0f, a: 1.0f }
+		magenta: 	{ r: 1.0f, g: 0.0f, b: 1.0f, a: 1.0f }
+		purple:  	{ r: 0.5f, g: 0.0f, b: 1.0f, a: 1.0f }
+	}
+
+	TextButtonStyle: {
+		default: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-32
+		}
+	}
+}
