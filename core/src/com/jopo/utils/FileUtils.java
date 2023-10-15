@@ -3,7 +3,7 @@ package com.jopo.utils;
 import java.io.*;
 
 public class FileUtils {
-    public FileUtils() {}
+    private FileUtils() {}
 
     public static void writeFile(String text, String filepath, boolean append) throws IOException {
         FileWriter writer = new FileWriter(filepath);

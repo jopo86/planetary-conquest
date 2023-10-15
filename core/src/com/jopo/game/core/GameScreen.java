@@ -14,18 +14,15 @@ public class GameScreen implements Screen {
 
     private final PlanetaryConquest game;
 
-    private Stage stage;
-
-    private Table table;
-    private Label pluh;
-
+    private final Stage stage;
+    private final Table table;
 
     public GameScreen(final PlanetaryConquest game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table(game.skin);
+        table = new Table(PlanetaryConquest.skin);
         table.setFillParent(true);
         table.align(Align.center | Align.top);
 

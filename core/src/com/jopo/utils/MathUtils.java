@@ -2,7 +2,7 @@ package com.jopo.utils;
 
 public class MathUtils {
 
-    public MathUtils() {}
+    private MathUtils() {}
 
     public static abstract class Shape {
         protected int x;
