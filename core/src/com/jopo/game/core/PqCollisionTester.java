@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.jopo.utils.MathUtils;
 
-public class CollisionTester extends Game {
+public class PqCollisionTester extends Game {
 
     ShapeRenderer shapeRenderer;
     MathUtils.Rectangle staticRect;

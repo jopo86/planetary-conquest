@@ -56,7 +56,7 @@ public class PlanetaryConquest extends Game {
 		stoneResourceBaseTexture =
 		metalResourceBaseTexture = null;
 
-		setScreen(new TitleScreen(this));
+		setScreen(new PqTitleScreen(this));
     }
 
 	@Override

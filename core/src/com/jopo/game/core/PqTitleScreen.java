@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class TitleScreen implements Screen {
+public class PqTitleScreen implements Screen {
 
     private Stage stage;
 
@@ -21,7 +21,7 @@ public class TitleScreen implements Screen {
     private Label title;
     private TextButton startButton;
 
-    public TitleScreen(final PlanetaryConquest game) {
+    public PqTitleScreen(final PlanetaryConquest game) {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -35,7 +35,7 @@ public class TitleScreen implements Screen {
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new PqGameScreen(game));
             }
         });
 
