@@ -1,4 +1,4 @@
-package com.jopo.game;
+package com.jopo.game.core;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;

@@ -21,23 +21,54 @@
 	}
 
 	Color: {
-		white: 		{ r: 1.0f, g: 1.0f, b: 1.0f, a: 1.0f }
-		black: 		{ r: 0.0f, g: 0.0f, b: 0.0f, a: 1.0f }
-		red: 		{ r: 1.0f, g: 0.0f, b: 0.0f, a: 1.0f }
-		orange: 	{ r: 1.0f, g: 0.5f, b: 0.0f, a: 1.0f }
-		yellow: 	{ r: 1.0f, g: 1.0f, b: 0.0f, a: 1.0f }
-		green: 		{ r: 0.0f, g: 1.0f, b: 0.0f, a: 1.0f }
-		cyan: 		{ r: 0.0f, g: 1.0f, b: 1.0f, a: 1.0f }
-		blue: 		{ r: 0.0f, g: 0.0f, b: 1.0f, a: 1.0f }
-		magenta: 	{ r: 1.0f, g: 0.0f, b: 1.0f, a: 1.0f }
-		purple:  	{ r: 0.5f, g: 0.0f, b: 1.0f, a: 1.0f }
+		white: 		{ r: 1.0, g: 1.0, b: 1.0, a: 1.0 }
+		black: 		{ r: 0.0, g: 0.0, b: 0.0, a: 1.0 }
+		red: 		{ r: 1.0, g: 0.0, b: 0.0, a: 1.0 }
+		orange: 	{ r: 1.0, g: 0.5, b: 0.0, a: 1.0 }
+		yellow: 	{ r: 1.0, g: 1.0, b: 0.0, a: 1.0 }
+		green: 		{ r: 0.0, g: 1.0, b: 0.0, a: 1.0 }
+		cyan: 		{ r: 0.0, g: 1.0, b: 1.0, a: 1.0 }
+		blue: 		{ r: 0.0, g: 0.0, b: 1.0, a: 1.0 }
+		magenta: 	{ r: 1.0, g: 0.0, b: 1.0, a: 1.0 }
+		purple:  	{ r: 0.5, g: 0.0, b: 1.0, a: 1.0 }
 	}
 
 	TextButtonStyle: {
-		default: {
+		size-16: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-16
+		}
+		size-32: {
 			down: default-round-down,
 			up: default-round
 			font: pixellari-32
+		}
+		size-48: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-48
+		}
+		size-64: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-64
+		}
+		size-80: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-80
+		}
+		size-96: {
+			down: default-round-down,
+			up: default-round
+			font: pixellari-96
+		}
+	}
+
+	LabelStyle: {
+		size-96: {
+			font: pixellari-96
 		}
 	}
 }

@@ -2,6 +2,7 @@ package com.jopo.game;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.jopo.game.core.PlanetaryConquest;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -14,6 +15,6 @@ public class DesktopLauncher {
 		config.setIdleFPS(30);
 		config.setResizable(false);
 
-		new Lwjgl3Application(new CollisionTester(), config);
+		new Lwjgl3Application(new PlanetaryConquest(), config);
 	}
 }

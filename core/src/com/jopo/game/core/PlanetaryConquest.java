@@ -1,17 +1,18 @@
-package com.jopo.game;
+package com.jopo.game.core;
 
 import com.badlogic.gdx.Game;
-
-import com.jopo.utils.FileUtils;
-
-import java.io.IOException;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class PlanetaryConquest extends Game {
 
+	Skin skin;
 	
 	@Override
 	public void create () {
+		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
 
+		setScreen(new TitleScreen(this));
     }
 
 	@Override
