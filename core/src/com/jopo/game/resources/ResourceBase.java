@@ -2,13 +2,15 @@ package com.jopo.game.resources;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public abstract class ResourceBase {
+public class ResourceBase {
 
-    protected int amount;
-    protected PlayerGameState receiver;
-    protected Sprite sprite;
+    private short type;
+    private int amount;
+    private PlayerGameState receiver;
+    private Sprite sprite;
 
-    public ResourceBase() {
+    public ResourceBase(short type) {
+        this.type = type;
         amount = 0;
         receiver = null;
         sprite = new Sprite();
@@ -20,7 +22,13 @@ public abstract class ResourceBase {
         setSprite();
     }
 
-    public abstract void setSprite();
+    public void setSprite() {
+        switch (type) {
+            case ResourceBaseType.WOOD -> sprite = null;
+            case ResourceBaseType.STONE -> sprite = null;
+            case ResourceBaseType.METAL -> sprite = null;
+        }
+    }
 
     public int getAmount() {
         return amount;
@@ -30,5 +38,11 @@ public abstract class ResourceBase {
         return receiver;
     }
 
-    public abstract void give();
+    public void give() {
+        switch (type) {
+            case ResourceBaseType.WOOD -> receiver.addWood(amount);
+            case ResourceBaseType.STONE -> receiver.addStone(amount);
+            case ResourceBaseType.METAL -> receiver.addMetal(amount);
+        }
+    }
 }
