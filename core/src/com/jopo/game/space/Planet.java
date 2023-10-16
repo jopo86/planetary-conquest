@@ -11,6 +11,7 @@ public class Planet extends AstronomicalBody {
     private boolean habited;
     private Player occupant;
     private ArrayList<ResourceBase> resourceBases;
+    private int orbitRadius;
 
     public Planet(byte type) {
         this.type = type;
@@ -20,7 +21,8 @@ public class Planet extends AstronomicalBody {
         evalType();
     }
 
-    public void evalType() {
+    @Override
+    protected void evalType() {
         switch (type) {
             case PlanetType.SMALL_BLUE -> {
                 sprite = new Sprite(PlanetType.SmallBlue.texture());
@@ -94,6 +96,10 @@ public class Planet extends AstronomicalBody {
             }
         }
     };
+
+    public byte getType() {
+        return type;
+    }
 
     public boolean isHabited() {
         return habited;

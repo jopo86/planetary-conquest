@@ -22,6 +22,23 @@ public final class PlanetType {
     public static final byte GAS_GIANT = 12;
     public static final byte GAS_GIANT_RINGS = 13;
 
+    public static boolean isSmall(byte type) {
+        return (type == SMALL_BLUE || type == SMALL_RED || type == SMALL_GRAY);
+    }
+
+    public static boolean isMedium(byte type) {
+        return (type == MEDIUM_BLUE || type == MEDIUM_RED || type == MEDIUM_RED_RINGS
+                || type == MEDIUM_GRAY || type == MEDIUM_EARTH);
+    }
+
+    public static boolean isLarge(byte type) {
+        return (type == LARGE_BLUE || type == LARGE_RED || type == LARGE_RED_RINGS || type == LARGE_EARTH);
+    }
+
+    public static boolean isGiant(byte type) {
+        return (type == GAS_GIANT || type == GAS_GIANT_RINGS);
+    }
+
     public static final class SmallBlue {
         public static final int radius = 100;
         public static Texture texture() {

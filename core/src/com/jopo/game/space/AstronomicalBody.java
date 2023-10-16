@@ -12,6 +12,8 @@ public abstract class AstronomicalBody {
     protected int x;
     protected int y;
 
+    protected abstract void evalType();
+
     public MathUtils.Circle getHitbox() {
         return hitbox;
     }
@@ -34,9 +36,11 @@ public abstract class AstronomicalBody {
 
     public void setX(int x) {
         this.x = x;
+        sprite.setX(x);
     }
 
     public void setY(int y) {
         this.y = y;
+        sprite.setY(y);
     }
 }

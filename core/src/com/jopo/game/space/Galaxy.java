@@ -15,7 +15,7 @@ public class Galaxy {
     }
 
     public void populate(int players) {
-        // TODO: populate galaxy with solar systems
+
     }
 
     public ArrayList<SolarSystem> getSolarSystems() {
