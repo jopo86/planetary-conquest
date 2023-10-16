@@ -1,4 +1,4 @@
-package com.jopo.game.resources;
+package com.jopo.game.space;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,10 @@ public class Galaxy {
 
     public Galaxy(ArrayList<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;
+    }
+
+    public void populate(int players) {
+        // TODO: populate galaxy with solar systems
     }
 
     public ArrayList<SolarSystem> getSolarSystems() {

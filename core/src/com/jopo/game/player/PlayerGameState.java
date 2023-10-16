@@ -1,4 +1,6 @@
-package com.jopo.game.resources;
+package com.jopo.game.player;
+
+import com.jopo.game.space.Planet;
 
 import java.util.ArrayList;
 

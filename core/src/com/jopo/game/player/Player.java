@@ -1,4 +1,4 @@
-package com.jopo.game.resources;
+package com.jopo.game.player;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ public class Player implements Serializable {
         return name;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Player implements Serializable {
         this.name = name;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 }

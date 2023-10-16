@@ -1,4 +1,4 @@
-package com.jopo.game.resources;
+package com.jopo.game.space;
 
 import java.util.ArrayList;
 

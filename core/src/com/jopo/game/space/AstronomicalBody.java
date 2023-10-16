@@ -1,4 +1,4 @@
-package com.jopo.game.resources;
+package com.jopo.game.space;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,10 +11,6 @@ public abstract class AstronomicalBody {
     protected int radius;
     protected int x;
     protected int y;
-
-    public void draw(SpriteBatch batch) {
-        sprite.draw(batch);
-    }
 
     public MathUtils.Circle getHitbox() {
         return hitbox;
