@@ -29,67 +29,67 @@ public final class StarType {
     }
 
     public static final class SmallWhite {
-        public static final int radius = 100;
+        public static final int radius = 50;
         public static Texture texture() {
             return PlanetaryConquest.smallWhiteStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class SmallOrange {
-        public static final int radius = 100;
+        public static final int radius = 50;
         public static Texture texture() {
             return PlanetaryConquest.smallOrangeStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class MediumWhite {
-        public static final int radius = 200;
+        public static final int radius = 75;
         public static Texture texture() {
             return PlanetaryConquest.mediumWhiteStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class MediumOrange {
-        public static final int radius = 200;
+        public static final int radius = 75;
         public static Texture texture() {
             return PlanetaryConquest.mediumOrangeStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class MediumBlue {
-        public static final int radius = 200;
+        public static final int radius = 75;
         public static Texture texture() {
             return PlanetaryConquest.mediumBlueStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class LargeWhite {
-        public static final int radius = 300;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.largeWhiteStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class LargeOrange {
-        public static final int radius = 300;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.largeOrangeStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
     public static final class LargeBlue {
-        public static final int radius = 300;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.largeBlueStarTexture;
         }
-        public static final float chance = 1/8f;
+        public static final float chance = 100/8f;
     }
 
 }

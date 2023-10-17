@@ -1,7 +1,7 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.jopo.game.player.PlayerGameState;
+import com.jopo.game.play.PlayerGameState;
 
 public class ResourceBase {
 

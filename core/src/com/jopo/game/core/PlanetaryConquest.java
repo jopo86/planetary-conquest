@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.jopo.game.player.PlayerGameState;
 
 public class PlanetaryConquest extends Game {
 
@@ -45,6 +44,8 @@ public class PlanetaryConquest extends Game {
 	public static Texture woodResourceBaseTexture;
 	public static Texture stoneResourceBaseTexture;
 	public static Texture metalResourceBaseTexture;
+
+	public static Texture galaxyBackgroundTexture;
 	
 	@Override
 	public void create () {
@@ -81,7 +82,7 @@ public class PlanetaryConquest extends Game {
 		metalResourceBaseTexture = null;
 
 		setScreen(new PqTitleScreen(this));
-    }
+	}
 
 	@Override
 	public void render () {
@@ -90,34 +91,34 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void dispose () {
-		skin.dispose();
-		smallBluePlanetTexture.dispose();
-		smallRedPlanetTexture.dispose();
-		smallGrayPlanetTexture.dispose();
-		mediumBluePlanetTexture.dispose();
-		mediumRedPlanetTexture.dispose();
-		mediumGrayPlanetTexture.dispose();
-		mediumRedRingsPlanetTexture.dispose();
-		mediumEarthPlanetTexture.dispose();
-		largeBluePlanetTexture.dispose();
-		largeRedPlanetTexture.dispose();
-		largeRedRingsPlanetTexture.dispose();
-		largeEarthPlanetTexture.dispose();
-		gasGiantPlanetTexture.dispose();
-		gasGiantRingsPlanetTexture.dispose();
-		smallWhiteStarTexture.dispose();
-		smallOrangeStarTexture.dispose();
-		mediumWhiteStarTexture.dispose();
-		mediumOrangeStarTexture.dispose();
-		mediumBlueStarTexture.dispose();
-		largeWhiteStarTexture.dispose();
-		largeOrangeStarTexture.dispose();
-		largeBlueStarTexture.dispose();
-		smallBlackHoleTexture.dispose();
-		mediumBlackHoleTexture.dispose();
-		largeBlackHoleTexture.dispose();
-		woodResourceBaseTexture.dispose();
-		stoneResourceBaseTexture.dispose();
-		metalResourceBaseTexture.dispose();
+//		skin.dispose();
+//		smallBluePlanetTexture.dispose();
+//		smallRedPlanetTexture.dispose();
+//		smallGrayPlanetTexture.dispose();
+//		mediumBluePlanetTexture.dispose();
+//		mediumRedPlanetTexture.dispose();
+//		mediumGrayPlanetTexture.dispose();
+//		mediumRedRingsPlanetTexture.dispose();
+//		mediumEarthPlanetTexture.dispose();
+//		largeBluePlanetTexture.dispose();
+//		largeRedPlanetTexture.dispose();
+//		largeRedRingsPlanetTexture.dispose();
+//		largeEarthPlanetTexture.dispose();
+//		gasGiantPlanetTexture.dispose();
+//		gasGiantRingsPlanetTexture.dispose();
+//		smallWhiteStarTexture.dispose();
+//		smallOrangeStarTexture.dispose();
+//		mediumWhiteStarTexture.dispose();
+//		mediumOrangeStarTexture.dispose();
+//		mediumBlueStarTexture.dispose();
+//		largeWhiteStarTexture.dispose();
+//		largeOrangeStarTexture.dispose();
+//		largeBlueStarTexture.dispose();
+//		smallBlackHoleTexture.dispose();
+//		mediumBlackHoleTexture.dispose();
+//		largeBlackHoleTexture.dispose();
+//		woodResourceBaseTexture.dispose();
+//		stoneResourceBaseTexture.dispose();
+//		metalResourceBaseTexture.dispose();
 	}
 }

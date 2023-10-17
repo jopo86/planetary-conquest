@@ -43,4 +43,15 @@ public abstract class AstronomicalBody {
         this.y = y;
         sprite.setY(y);
     }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+//        sprite.setPosition(x, y);
+    }
+
+    public void translate(int amountX, int amountY) {
+        this.x += amountX;
+        this.y += amountY;
+    }
 }

@@ -208,4 +208,20 @@ public class MathUtils {
 
         return (distance(circ.getCenter(), testX, testY) <= circ.radius);
     }
+
+    public static int randInt(int start, int end) {
+        return (int)(start + Math.random() * (end - start));
+    }
+
+    public static float randFloat(float start, float end) {
+        return (float)(start + Math.random() * (end - start));
+    }
+
+    public static float degToRad(float deg) {
+        return (float)(Math.PI / 180 * deg);
+    }
+
+    public static float radToDeg(float rad) {
+        return (float)(180 / Math.PI * rad);
+    }
 }

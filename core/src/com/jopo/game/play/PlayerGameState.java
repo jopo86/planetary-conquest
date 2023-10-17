@@ -1,4 +1,4 @@
-package com.jopo.game.player;
+package com.jopo.game.play;
 
 import com.jopo.game.space.Planet;
 

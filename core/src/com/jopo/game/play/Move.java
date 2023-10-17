@@ -1,4 +1,4 @@
-package com.jopo.game.player;
+package com.jopo.game.play;
 
 import com.jopo.game.core.PlanetaryConquest;
 import com.jopo.game.core.PqGameScreen;
