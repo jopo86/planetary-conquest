@@ -17,22 +17,23 @@ public class PqGameScreen implements Screen {
 
     private final PlanetaryConquest game;
     private final Galaxy galaxy;
+    private float galaxyScale;
 
     private final Stage stage;
     private final Table table;
 
     private final PqGameRenderer renderer;
-
-    private MathUtils.Point lastMouse;
+    private final PqInputHandler input;
 
     public PqGameScreen(final PlanetaryConquest game) {
         this.game = game;
+        input = game.inputHandler;
         galaxy = new Galaxy();
         galaxy.populate((short)2);
         galaxy.translateAll(200, 700);
+        galaxyScale = 1f;
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
-        Gdx.input.setInputProcessor(new InputMultiplexer(stage, game.inputHandler));
+        Gdx.input.setInputProcessor(new InputMultiplexer(stage, input));
 
         table = new Table(PlanetaryConquest.skin);
         table.setFillParent(true);
@@ -42,7 +43,6 @@ public class PqGameScreen implements Screen {
 
         renderer = new PqGameRenderer(stage, galaxy);
 
-        lastMouse = new MathUtils.Point(Gdx.input.getX(), Gdx.input.getY());
     }
 
     public void attackSequence(PlayerGameState attacker, PlayerGameState defender) {
@@ -54,9 +54,8 @@ public class PqGameScreen implements Screen {
     }
 
     private void update(float delta) {
-
-        if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) galaxy.translateAll(Gdx.input.getX() - lastMouse.getX(), -(Gdx.input.getY() - lastMouse.getY()));
-        lastMouse.set(Gdx.input.getX(), Gdx.input.getY());
+        input.update();
+        if (input.isLeftMouseButtonPressed()) galaxy.translateAll(input.getDeltaMouse());
     }
 
     @Override

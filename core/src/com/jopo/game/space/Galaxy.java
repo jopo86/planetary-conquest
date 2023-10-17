@@ -1,6 +1,7 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.Gdx;
+import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,24 @@ public class Galaxy {
             solarSystem.getStar().translate(amountX, amountY);
             for (Planet planet : solarSystem.getPlanets()) {
                 planet.translate(amountX, amountY);
+            }
+        }
+    }
+
+    public void translateAll(MathUtils.Point amount) {
+        for (SolarSystem solarSystem : solarSystems) {
+            solarSystem.getStar().translate(amount);
+            for (Planet planet : solarSystem.getPlanets()) {
+                planet.translate(amount);
+            }
+        }
+    }
+
+    public void scaleAll(float amount) {
+        for (SolarSystem solarSystem : solarSystems) {
+            solarSystem.getStar().scale(amount);
+            for (Planet planet : solarSystem.getPlanets()) {
+                planet.scale(amount);
             }
         }
     }

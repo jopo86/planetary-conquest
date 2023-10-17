@@ -54,4 +54,16 @@ public abstract class AstronomicalBody {
         this.x += amountX;
         this.y += amountY;
     }
+
+    public void translate(MathUtils.Point amount) {
+        this.x += amount.getX();
+        this.y += amount.getY();
+    }
+
+    public void scale(float amount) {
+        this.radius *= amount;
+        this.x *= amount;
+        this.y *= amount;
+//        sprite.setScale(amount);
+    }
 }
