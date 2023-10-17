@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Galaxy {
 
     private ArrayList<SolarSystem> solarSystems;
+    private float zoom;
 
     public Galaxy() {
         solarSystems = new ArrayList<>();
@@ -32,6 +33,7 @@ public class Galaxy {
                 planet.goToOrbitPosition(solarSystem.getStar());
             }
         }
+        // TODO: apply zoom
     }
 
     public void translateAll(int amountX, int amountY) {
