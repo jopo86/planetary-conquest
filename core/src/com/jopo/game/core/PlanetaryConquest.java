@@ -13,33 +13,19 @@ public class PlanetaryConquest extends Game {
 
 	public static Skin skin;
 
-	public static Texture smallBluePlanetTexture;
-	public static Texture smallRedPlanetTexture;
-	public static Texture smallGrayPlanetTexture;
-	public static Texture mediumBluePlanetTexture;
-	public static Texture mediumRedPlanetTexture;
-	public static Texture mediumGrayPlanetTexture;
-	public static Texture mediumRedRingsPlanetTexture;
-	public static Texture mediumEarthPlanetTexture;
-	public static Texture largeBluePlanetTexture;
-	public static Texture largeRedPlanetTexture;
-	public static Texture largeRedRingsPlanetTexture;
-	public static Texture largeEarthPlanetTexture;
-	public static Texture gasGiantPlanetTexture;
-	public static Texture gasGiantRingsPlanetTexture;
+	public static Texture bluePlanetTexture;
+	public static Texture bluePlanetRingsTexture;
+	public static Texture earthPlanetTexture;
+	public static Texture grayPlanetTexture;
+	public static Texture lavaPlanetTexture;
+	public static Texture marsPlanetTexture;
+	public static Texture saturnPlanetTexture;
 
-	public static Texture smallWhiteStarTexture;
-	public static Texture smallOrangeStarTexture;
-	public static Texture mediumWhiteStarTexture;
-	public static Texture mediumOrangeStarTexture;
-	public static Texture mediumBlueStarTexture;
-	public static Texture largeWhiteStarTexture;
-	public static Texture largeOrangeStarTexture;
-	public static Texture largeBlueStarTexture;
+	public static Texture whiteStarTexture;
+	public static Texture yellowStarTexture;
+	public static Texture blueStarTexture;
 
-	public static Texture smallBlackHoleTexture;
-	public static Texture mediumBlackHoleTexture;
-	public static Texture largeBlackHoleTexture;
+	public static Texture blackHoleTexture;
 
 	public static Texture woodResourceBaseTexture;
 	public static Texture stoneResourceBaseTexture;
@@ -52,34 +38,20 @@ public class PlanetaryConquest extends Game {
 		inputHandler = new PqInputHandler();
 		Gdx.input.setInputProcessor(inputHandler);
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
-		smallBluePlanetTexture =
-		smallRedPlanetTexture =
-		smallGrayPlanetTexture =
-		mediumBluePlanetTexture =
-		mediumRedPlanetTexture =
-		mediumGrayPlanetTexture =
-		mediumRedRingsPlanetTexture =
-		mediumEarthPlanetTexture =
-		largeBluePlanetTexture =
-		largeRedPlanetTexture =
-		largeRedRingsPlanetTexture =
-		largeEarthPlanetTexture =
-		gasGiantPlanetTexture =
-		gasGiantRingsPlanetTexture =
-		smallWhiteStarTexture =
-		smallOrangeStarTexture =
-		mediumWhiteStarTexture =
-		mediumOrangeStarTexture =
-		mediumBlueStarTexture =
-		largeWhiteStarTexture =
-		largeOrangeStarTexture =
-		largeBlueStarTexture =
-		smallBlackHoleTexture =
-		mediumBlackHoleTexture =
-		largeBlackHoleTexture =
-		woodResourceBaseTexture =
-		stoneResourceBaseTexture =
-		metalResourceBaseTexture = null;
+
+		bluePlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		bluePlanetRingsTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		earthPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		grayPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		lavaPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		marsPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		saturnPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+
+		whiteStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		yellowStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		blueStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+
+		blackHoleTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
 
 		setScreen(new PqTitleScreen(this));
 	}
@@ -91,34 +63,20 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void dispose () {
-//		skin.dispose();
-//		smallBluePlanetTexture.dispose();
-//		smallRedPlanetTexture.dispose();
-//		smallGrayPlanetTexture.dispose();
-//		mediumBluePlanetTexture.dispose();
-//		mediumRedPlanetTexture.dispose();
-//		mediumGrayPlanetTexture.dispose();
-//		mediumRedRingsPlanetTexture.dispose();
-//		mediumEarthPlanetTexture.dispose();
-//		largeBluePlanetTexture.dispose();
-//		largeRedPlanetTexture.dispose();
-//		largeRedRingsPlanetTexture.dispose();
-//		largeEarthPlanetTexture.dispose();
-//		gasGiantPlanetTexture.dispose();
-//		gasGiantRingsPlanetTexture.dispose();
-//		smallWhiteStarTexture.dispose();
-//		smallOrangeStarTexture.dispose();
-//		mediumWhiteStarTexture.dispose();
-//		mediumOrangeStarTexture.dispose();
-//		mediumBlueStarTexture.dispose();
-//		largeWhiteStarTexture.dispose();
-//		largeOrangeStarTexture.dispose();
-//		largeBlueStarTexture.dispose();
-//		smallBlackHoleTexture.dispose();
-//		mediumBlackHoleTexture.dispose();
-//		largeBlackHoleTexture.dispose();
-//		woodResourceBaseTexture.dispose();
-//		stoneResourceBaseTexture.dispose();
-//		metalResourceBaseTexture.dispose();
+		skin.dispose();
+		bluePlanetTexture.dispose();
+		bluePlanetRingsTexture.dispose();
+		earthPlanetTexture.dispose();
+		grayPlanetTexture.dispose();
+		lavaPlanetTexture.dispose();
+		marsPlanetTexture.dispose();
+		saturnPlanetTexture.dispose();
+		whiteStarTexture.dispose();
+		yellowStarTexture.dispose();
+		blueStarTexture.dispose();
+		blackHoleTexture.dispose();
+		woodResourceBaseTexture.dispose();
+		stoneResourceBaseTexture.dispose();
+		metalResourceBaseTexture.dispose();
 	}
 }
