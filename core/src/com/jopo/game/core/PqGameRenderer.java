@@ -2,6 +2,7 @@ package com.jopo.game.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -16,21 +17,29 @@ import com.jopo.utils.MathUtils;
 public class PqGameRenderer {
 
     private SpriteBatch batch;
+    private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
     private Stage stage;
     private Galaxy galaxy;
     private Sprite galaxyBackground;
+    private float scale;
 
     public PqGameRenderer(Stage stage, Galaxy galaxy) {
         batch = new SpriteBatch();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false);
+        camera.translate(-Gdx.graphics.getWidth() / 2f, -Gdx.graphics.getHeight() / 2f);
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setAutoShapeType(true);
+        shapeRenderer.setProjectionMatrix(camera.combined);
         this.stage = stage;
         this.galaxy = galaxy;
 //        galaxyBackground = new Sprite(PlanetaryConquest.galaxyBackgroundTexture);
+        scale = 1f;
     }
 
     public void render() {
+        camera.update();
         ScreenUtils.clear(1f, 1f, 1f, 1f);
         stage.draw();
         galaxy.update(Gdx.graphics.getDeltaTime());
@@ -50,6 +59,8 @@ public class PqGameRenderer {
             }
         }
         shapeRenderer.end();
+        scale -= .00000001f;
+        galaxy.scaleAll(scale);
     }
 
 }

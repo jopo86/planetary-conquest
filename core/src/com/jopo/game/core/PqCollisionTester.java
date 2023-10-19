@@ -34,8 +34,8 @@ public class PqCollisionTester extends Game {
     public void update(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             Gdx.input.setCursorCatched(false);
-            if (cursorType == 2) Gdx.input.setCursorPosition(cursorRect.getCenterX(), Gdx.graphics.getHeight() - cursorRect.getCenterY());
-            else if (cursorType == 3) Gdx.input.setCursorPosition(cursorCirc.getCenterX(), Gdx.graphics.getHeight() - cursorCirc.getCenterY());
+            if (cursorType == 2) Gdx.input.setCursorPosition((int)cursorRect.getCenter().getX(), (int)(Gdx.graphics.getHeight() - cursorRect.getCenter().getY()));
+            else if (cursorType == 3) Gdx.input.setCursorPosition((int)cursorCirc.getCenter().getX(), (int)(Gdx.graphics.getHeight() - cursorCirc.getCenter().getY()));
             cursorType = 1;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {

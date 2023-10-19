@@ -18,7 +18,7 @@ public class SolarSystem {
         this.planets = planets;
     }
 
-    public void populate(int starX, int starY) {
+    public void populate(float starX, float starY) {
         star = Star.randStar();
         star.setPosition(starX, starY);
         int collectiveRadius = 50 + star.getRadius();

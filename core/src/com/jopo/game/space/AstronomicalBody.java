@@ -1,16 +1,13 @@
 package com.jopo.game.space;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.jopo.utils.MathUtils;
 
-public abstract class AstronomicalBody {
+
+public abstract class AstronomicalBody extends Image {
 
     protected MathUtils.Circle hitbox;
-    protected Sprite sprite;
     protected int radius;
-    protected int x;
-    protected int y;
 
     protected abstract void evalType();
 
@@ -18,52 +15,7 @@ public abstract class AstronomicalBody {
         return hitbox;
     }
 
-    public Sprite getSprite() {
-        return sprite;
-    }
-
     public int getRadius() {
         return radius;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-        sprite.setX(x);
-    }
-
-    public void setY(int y) {
-        this.y = y;
-        sprite.setY(y);
-    }
-
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
-//        sprite.setPosition(x, y);
-    }
-
-    public void translate(int amountX, int amountY) {
-        this.x += amountX;
-        this.y += amountY;
-    }
-
-    public void translate(MathUtils.Point amount) {
-        this.x += amount.getX();
-        this.y += amount.getY();
-    }
-
-    public void scale(float amount) {
-        this.radius *= amount;
-        this.x *= amount;
-        this.y *= amount;
-//        sprite.setScale(amount);
     }
 }

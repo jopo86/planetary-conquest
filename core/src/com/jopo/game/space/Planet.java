@@ -203,8 +203,8 @@ public class Planet extends AstronomicalBody {
     }
 
     public void goToOrbitPosition(Star star) {
-        x = star.getX() + (int)(Math.cos(MathUtils.degToRad(orbitAngle)) * orbitRadius);
-        y = star.getY() + (int)(Math.sin(MathUtils.degToRad(orbitAngle)) * orbitRadius);
+        setX(star.getX() + (int)(Math.cos(MathUtils.degToRad(orbitAngle)) * orbitRadius));
+        setY(star.getY() + (int)(Math.sin(MathUtils.degToRad(orbitAngle)) * orbitRadius));
     }
 
     public void giveResources() {

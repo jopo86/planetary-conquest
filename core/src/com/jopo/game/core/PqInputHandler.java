@@ -68,27 +68,27 @@ public class PqInputHandler implements InputProcessor {
     }
 
     public int getMouseX() {
-        return mouse.getX();
+        return (int)mouse.getX();
     }
 
     public int getMouseY() {
-        return mouse.getY();
+        return (int)mouse.getY();
     }
 
     public int getDeltaMouseX() {
-        return deltaMouse.getX();
+        return (int)deltaMouse.getX();
     }
 
     public int getDeltaMouseY() {
-        return deltaMouse.getY();
+        return (int)deltaMouse.getY();
     }
 
     public void update() {
         int x = Gdx.input.getX();
         int y = Gdx.graphics.getHeight() - Gdx.input.getY();
-        mouse.set(x, y);
-        deltaMouse.set(x - lastMouse.getX(), y - lastMouse.getY());
-        lastMouse.set(x, y);
+        mouse.setPosition(x, y);
+        deltaMouse.setPosition(x - lastMouse.getX(), y - lastMouse.getY());
+        lastMouse.setPosition(x, y);
     }
 
     @Override

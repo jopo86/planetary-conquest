@@ -1,6 +1,7 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -8,14 +9,19 @@ import java.util.ArrayList;
 public class Galaxy {
 
     private ArrayList<SolarSystem> solarSystems;
+    private Group group;
     private float zoom;
 
     public Galaxy() {
         solarSystems = new ArrayList<>();
+        group = new Group();
+        zoom = 1f;
     }
 
     public Galaxy(ArrayList<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;
+        group = new Group();
+        zoom = 1f;
     }
 
     public void populate(short players) {
@@ -23,6 +29,17 @@ public class Galaxy {
         for (int i = 0; i < players; i++) {
             solarSystems.add(new SolarSystem());
             solarSystems.get(i).populate(placer.placements.get(i).getX(), placer.placements.get(i).getY());
+        }
+        regroup();
+    }
+
+    public void regroup() {
+        group.clear();
+        for (SolarSystem solarSystem : solarSystems) {
+            group.addActor(solarSystem.getStar());
+            for (Planet planet : solarSystem.getPlanets()) {
+                group.addActor(planet);
+            }
         }
     }
 
@@ -36,31 +53,16 @@ public class Galaxy {
         // TODO: apply zoom
     }
 
-    public void translateAll(int amountX, int amountY) {
-        for (SolarSystem solarSystem : solarSystems) {
-            solarSystem.getStar().translate(amountX, amountY);
-            for (Planet planet : solarSystem.getPlanets()) {
-                planet.translate(amountX, amountY);
-            }
-        }
+    public void translateAll(float amountX, float amountY) {
+        group.moveBy(amountX, amountY);
     }
 
     public void translateAll(MathUtils.Point amount) {
-        for (SolarSystem solarSystem : solarSystems) {
-            solarSystem.getStar().translate(amount);
-            for (Planet planet : solarSystem.getPlanets()) {
-                planet.translate(amount);
-            }
-        }
+        group.moveBy(amount.getX(), amount.getY());
     }
 
     public void scaleAll(float amount) {
-        for (SolarSystem solarSystem : solarSystems) {
-            solarSystem.getStar().scale(amount);
-            for (Planet planet : solarSystem.getPlanets()) {
-                planet.scale(amount);
-            }
-        }
+        group.setScale(amount);
     }
 
     public ArrayList<SolarSystem> getSolarSystems() {
