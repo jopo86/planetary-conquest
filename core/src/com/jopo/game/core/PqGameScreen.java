@@ -5,8 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import com.jopo.game.play.PlayerGameState;
@@ -15,33 +13,30 @@ import com.jopo.utils.MathUtils;
 
 public class PqGameScreen implements Screen {
 
-    private final PlanetaryConquest game;
     private final Galaxy galaxy;
+    private final PqGameUI ui;
     private float galaxyZoom;
 
-    private final Stage stage;
-    private final Table table;
+    private final Stage gameStage;
+    private final Stage uiStage;
 
     private final PqGameRenderer renderer;
     private final PqInputHandler input;
 
     public PqGameScreen(final PlanetaryConquest game) {
-        this.game = game;
         input = game.inputHandler;
         galaxy = new Galaxy();
         galaxy.populate((short)2);
         galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
         galaxyZoom = 1f;
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(new InputMultiplexer(stage, input));
+        gameStage = new Stage(new ScreenViewport());
+        uiStage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, uiStage, input));
 
-        table = new Table(PlanetaryConquest.skin);
-        table.setFillParent(true);
-        table.align(Align.center | Align.top);
+        ui = new PqGameUI(this);
+        uiStage.addActor(ui);
 
-        stage.addActor(table);
-
-        renderer = new PqGameRenderer(stage, galaxy);
+        renderer = new PqGameRenderer(gameStage, uiStage, galaxy);
 
     }
 
@@ -61,6 +56,8 @@ public class PqGameScreen implements Screen {
         galaxyZoom += -input.getScroll() / 20f;
         galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 3f);
         galaxy.zoom(galaxyZoom);
+
+        if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) renderer.setShouldDrawRings(!renderer.getShouldDrawRings());
     }
 
     @Override
@@ -96,6 +93,7 @@ public class PqGameScreen implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+        gameStage.dispose();
+        uiStage.dispose();
     }
 }

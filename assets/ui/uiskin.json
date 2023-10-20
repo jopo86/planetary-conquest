@@ -67,6 +67,12 @@
 	}
 
 	LabelStyle: {
+		size-16: {
+			font: pixellari-16
+		},
+		size-32: {
+			font: pixellari-32
+		},
 		size-96: {
 			font: pixellari-96
 		}

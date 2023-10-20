@@ -1,6 +1,6 @@
 package com.jopo.game.space;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.jopo.game.core.PqConstants;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -15,21 +15,17 @@ public class SolarSystem {
         this.planets = new ArrayList<>();
     }
 
-    public SolarSystem(Star star, ArrayList<Planet> planets) {
-        this.planets = planets;
-    }
-
     public void populate(float starX, float starY) {
         star = Star.randStar();
         star.setPosition(starX, starY);
         int collectiveRadius = 50 + star.getRadius();
-        int numPlanets = MathUtils.randInt(3, 6);
+        int numPlanets = MathUtils.randInt(PqConstants.NUM_PLANETS_MIN, PqConstants.NUM_PLANETS_MAX);
         for (int i = 0; i < numPlanets; i++) {
-            collectiveRadius += MathUtils.randInt(100, 150);
+            collectiveRadius += MathUtils.randInt(PqConstants.ORBIT_RADIUS_GAP_MIN, PqConstants.ORBIT_RADIUS_GAP_MAX);
             planets.add(Planet.randPlanet());
             planets.get(i).setOrbitRadius(collectiveRadius);
             planets.get(i).setOrbitAngle(MathUtils.randInt(0, 361));
-            planets.get(i).setOrbitSpeed(MathUtils.randInt(25, 50));
+            planets.get(i).setOrbitSpeed(MathUtils.randInt(PqConstants.ORBIT_SPEED_MIN, PqConstants.ORBIT_SPEED_MAX));
         }
     }
 
@@ -45,15 +41,7 @@ public class SolarSystem {
         return planets.get(i);
     }
 
-    public void setStar(Star star) {
-        this.star = star;
-    }
-
     public void setPlanets(ArrayList<Planet> planets) {
         this.planets = planets;
-    }
-
-    public void addPlanet(Planet planet) {
-        planets.add(planet);
     }
 }

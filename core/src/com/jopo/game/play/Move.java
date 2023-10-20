@@ -1,6 +1,6 @@
 package com.jopo.game.play;
 
-import com.jopo.game.core.PlanetaryConquest;
+import com.jopo.game.core.PqConstants;
 import com.jopo.game.core.PqGameScreen;
 import com.jopo.game.space.Planet;
 
@@ -10,15 +10,11 @@ public class Move {
         switch(type) {
             case MoveType.PASS -> {
                 for (Planet planet : source.getPlanets()) {
-                    planet.giveResources(PlanetaryConquest.passResourceMultiplier);
+                    planet.giveResources(PqConstants.PASS_RESOURCE_MULTIPLIER);
                 }
             }
-            case MoveType.BUILD_UPGRADE -> {
-                gameScreen.buildUpgradeSequence(source);
-            }
-            case MoveType.ATTACK -> {
-                gameScreen.attackSequence(source, target);
-            }
+            case MoveType.BUILD_UPGRADE -> gameScreen.buildUpgradeSequence(source);
+            case MoveType.ATTACK -> gameScreen.attackSequence(source, target);
         }
     }
 

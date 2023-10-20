@@ -7,8 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class PlanetaryConquest extends Game {
 
-	public static final float passResourceMultiplier = 1.2f;
-
 	public PqInputHandler inputHandler;
 
 	public static Skin skin;

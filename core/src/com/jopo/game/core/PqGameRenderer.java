@@ -13,25 +13,31 @@ import com.jopo.utils.MathUtils;
 
 public class PqGameRenderer {
 
-    private Stage stage;
-    private ShapeRenderer shapeRenderer;
-    private Galaxy galaxy;
+    private final Stage gameStage;
+    private final Stage uiStage;
+    private final ShapeRenderer shapeRenderer;
+    private final Galaxy galaxy;
     private Sprite galaxyBackground;
+    private boolean shouldDrawRings;
 
-    public PqGameRenderer(Stage stage, Galaxy galaxy) {
-        this.stage = stage;
-        shapeRenderer = new ShapeRenderer();
+    public PqGameRenderer(Stage gameStage, Stage uiStage, Galaxy galaxy) {
+        this.gameStage = gameStage;
+        this.uiStage = uiStage;
         this.galaxy = galaxy;
-        stage.addActor(galaxy.getGroup());
+        shapeRenderer = new ShapeRenderer();
+        gameStage.addActor(galaxy.getGroup());
+        shouldDrawRings = true;
 //        galaxyBackground = new Sprite(PlanetaryConquest.galaxyBackgroundTexture);
     }
 
     public void render() {
         galaxy.update(Gdx.graphics.getDeltaTime());
         ScreenUtils.clear(.03f, 0f, .07f, 0f);
-        stage.act();
-        drawRings();
-        stage.draw();
+        gameStage.act();
+        if (shouldDrawRings) drawRings();
+        gameStage.draw();
+        uiStage.act();
+        uiStage.draw();
     }
 
     public void drawRings() {
@@ -49,5 +55,13 @@ public class PqGameRenderer {
             }
         }
         shapeRenderer.end();
+    }
+
+    public boolean getShouldDrawRings() {
+        return shouldDrawRings;
+    }
+
+    public void setShouldDrawRings(boolean shouldDrawRings) {
+        this.shouldDrawRings = shouldDrawRings;
     }
 }
