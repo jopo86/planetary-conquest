@@ -2,6 +2,7 @@ package com.jopo.game.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -16,6 +17,7 @@ public class PqGameRenderer {
     private final Stage gameStage;
     private final Stage uiStage;
     private final ShapeRenderer shapeRenderer;
+    private final SpriteBatch batch;
     private final Galaxy galaxy;
     private Sprite galaxyBackground;
     private boolean shouldDrawRings;
@@ -25,6 +27,7 @@ public class PqGameRenderer {
         this.uiStage = uiStage;
         this.galaxy = galaxy;
         shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
         gameStage.addActor(galaxy.getGroup());
         shouldDrawRings = true;
 //        galaxyBackground = new Sprite(PlanetaryConquest.galaxyBackgroundTexture);

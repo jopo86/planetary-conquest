@@ -9,8 +9,8 @@ public final class PqConstants {
     public static final int NUM_PLANETS_MAX = 5;
     public static final int ORBIT_RADIUS_GAP_MIN = 150;
     public static final int ORBIT_RADIUS_GAP_MAX = 200;
-    public static final int ORBIT_SPEED_MIN = 25;
-    public static final int ORBIT_SPEED_MAX = 50;
+    public static final int ORBIT_SPEED_MIN = 5;
+    public static final int ORBIT_SPEED_MAX = 10;
 
 
 }

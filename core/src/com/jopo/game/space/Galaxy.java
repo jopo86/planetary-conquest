@@ -11,13 +11,19 @@ import java.util.ArrayList;
 public class Galaxy {
 
     private ArrayList<SolarSystem> solarSystems;
+    private BlackHole blackHole;
     private Group group;
     private float zoom;
 
     public Galaxy() {
         solarSystems = new ArrayList<>();
+        blackHole = new BlackHole(BlackHoleType.LARGE);
+        blackHole.setPosition(0 - blackHole.getImageWidth(), 0 - blackHole.getImageHeight());
+        blackHole.setOrigin(Align.center);
+        blackHole.setRotation(-25f);
         group = new Group();
         group.setOrigin(0, 0);
+        group.addActor(blackHole);
         zoom = 1f;
     }
 
@@ -32,13 +38,15 @@ public class Galaxy {
         SolarSystemPlacer placer = new SolarSystemPlacer(players);
         for (int i = 0; i < players; i++) {
             solarSystems.add(new SolarSystem());
-            solarSystems.get(i).populate(placer.placements.get(i).getX(), placer.placements.get(i).getY());
+            solarSystems.get(i).populate(placer.getPlacement(i).getX(), placer.getPlacement(i).getY());
         }
         regroup();
     }
 
     public void regroup() {
         group.clear();
+        group.addActor(blackHole);
+        blackHole.moveBy(-blackHole.getWidth() / 2f, -blackHole.getHeight() / 2f);
         for (SolarSystem solarSystem : solarSystems) {
             group.addActor(solarSystem.getStar());
             for (Planet planet : solarSystem.getPlanets()) {
@@ -75,6 +83,10 @@ public class Galaxy {
 
     public SolarSystem getSolarSystem(int i) {
         return solarSystems.get(i);
+    }
+
+    public BlackHole getBlackHole() {
+        return blackHole;
     }
 
     public Group getGroup() {

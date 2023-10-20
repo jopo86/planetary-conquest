@@ -7,20 +7,20 @@ import java.util.ArrayList;
 public class SolarSystemPlacer {
 
     private short players;
-    ArrayList<MathUtils.Point> placements;
+    private ArrayList<MathUtils.Point> placements;
 
     public SolarSystemPlacer(short players) {
         this.players = players;
         placements = new ArrayList<>();
         switch(players) {
             case 2 -> {
-                placements.add(new MathUtils.Point(-700, 400));
-                placements.add(new MathUtils.Point(700, -400));
+                placements.add(new MathUtils.Point(-1300, 800));
+                placements.add(new MathUtils.Point(1300, -800));
             }
             case 3 -> {
-                placements.add(new MathUtils.Point(-500, -300));
-                placements.add(new MathUtils.Point(500, -300));
-                placements.add(new MathUtils.Point(0, 300));
+                placements.add(new MathUtils.Point(-1300, -1000));
+                placements.add(new MathUtils.Point(1300, -1000));
+                placements.add(new MathUtils.Point(0, 1000));
             }
             case 4 -> {
                 placements.add(new MathUtils.Point(500, 300));
@@ -46,4 +46,11 @@ public class SolarSystemPlacer {
         }
     }
 
+    public ArrayList<MathUtils.Point> getPlacements() {
+        return placements;
+    }
+
+    public MathUtils.Point getPlacement(int i) {
+        return placements.get(i);
+    }
 }
