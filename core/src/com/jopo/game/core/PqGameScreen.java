@@ -55,8 +55,11 @@ public class PqGameScreen implements Screen {
 
     private void update(float delta) {
         input.update();
+
         if (input.isLeftMouseButtonPressed()) galaxy.translate(input.getDeltaMouse());
-        galaxyZoom += -input.getScroll() / 50f;
+
+        galaxyZoom += -input.getScroll() / 20f;
+        galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 3f);
         galaxy.zoom(galaxyZoom);
     }
 

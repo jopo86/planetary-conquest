@@ -36,7 +36,7 @@ public class PqGameRenderer {
 
     public void drawRings() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(.18f, .15f, .22f, 0f);
+        shapeRenderer.setColor(.33f, .3f, .37f, 0f);
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
             for (Planet planet : solarSystem.getPlanets()) {
                 float radius = MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter());
