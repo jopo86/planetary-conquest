@@ -40,7 +40,8 @@ public class PqGameRenderer {
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
             for (Planet planet : solarSystem.getPlanets()) {
                 float radius = MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter());
-                shapeRenderer.circle(galaxy.getGroup().getX() + galaxy.getGroup().getScaleX() * solarSystem.getStar().getCenterX(),
+                shapeRenderer.circle(
+                        galaxy.getGroup().getX() + galaxy.getGroup().getScaleX() * solarSystem.getStar().getCenterX(),
                         galaxy.getGroup().getY() + galaxy.getGroup().getScaleY() * solarSystem.getStar().getCenterY(),
                         galaxy.getGroup().getScaleX() * radius,
                         (int)((new MathUtils.Circle(0, 0, radius).getCircumference()) / 20f)
