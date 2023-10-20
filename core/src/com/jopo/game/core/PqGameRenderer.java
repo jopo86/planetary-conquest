@@ -30,7 +30,6 @@ public class PqGameRenderer {
         batch = new SpriteBatch();
         gameStage.addActor(galaxy.getGroup());
         shouldDrawRings = true;
-//        galaxyBackground = new Sprite(PlanetaryConquest.galaxyBackgroundTexture);
     }
 
     public void render() {
@@ -38,7 +37,8 @@ public class PqGameRenderer {
         ScreenUtils.clear(.03f, 0f, .07f, 0f);
         batch.begin();
         galaxy.getBackground().setPosition(galaxy.getGroup().getX() * .1f - galaxy.getBackground().getWidth() / 2f, galaxy.getGroup().getY() * .1f - galaxy.getBackground().getHeight() / 2f);
-        galaxy.getBackground().draw(batch, .6f);
+        galaxy.getBackground().setScale(galaxy.getGroup().getScaleX() * .1f + .9f);
+        galaxy.getBackground().draw(batch, PqConstants.GALAXY_BACKGROUND_OPACITY);
         batch.end();
         gameStage.act();
         if (shouldDrawRings) drawRings();
@@ -49,7 +49,7 @@ public class PqGameRenderer {
 
     public void drawRings() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(.33f, .3f, .37f, 0f);
+        shapeRenderer.setColor(.23f, .2f, .27f, 0f);
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
             for (Planet planet : solarSystem.getPlanets()) {
                 float radius = MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter());
@@ -62,14 +62,6 @@ public class PqGameRenderer {
             }
         }
         shapeRenderer.end();
-    }
-
-    public boolean getShouldDrawRings() {
-        return shouldDrawRings;
-    }
-
-    public void setShouldDrawRings(boolean shouldDrawRings) {
-        this.shouldDrawRings = shouldDrawRings;
     }
 
     public void toggleShouldDrawRings() {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import com.jopo.game.play.PlayerGameState;
@@ -29,9 +30,9 @@ public class PqGameScreen implements Screen {
     public PqGameScreen(final PlanetaryConquest game) {
         input = game.inputHandler;
         galaxy = new Galaxy();
-        galaxy.populate((short)3);
+        galaxy.populate((short)4);
         galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
-        galaxyZoom = .7f;
+        galaxyZoom = .5f;
         gameStage = new Stage(new ScreenViewport());
         uiStage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, uiStage, input));
@@ -65,6 +66,16 @@ public class PqGameScreen implements Screen {
         if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) {
             renderer.toggleShouldDrawRings();
         }
+
+        if (input.isKeyTapped(Input.Keys.CONTROL_LEFT) || input.isKeyTapped(Input.Keys.CONTROL_RIGHT)) {
+            MoveToAction mta = new MoveToAction();
+            mta.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
+            mta.setDuration(.2f);
+            galaxy.getGroup().addAction(mta);
+        }
+
+        galaxy.getGroup().setPosition((int)MathUtils.clamp(galaxy.getGroup().getX(), -5000 * galaxy.getGroup().getScaleX(), 5000),
+                ((int)MathUtils.clamp(galaxy.getGroup().getY(), -5000, 5000)));
     }
 
     @Override

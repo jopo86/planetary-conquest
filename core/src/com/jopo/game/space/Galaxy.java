@@ -25,6 +25,7 @@ public class Galaxy {
         blackHole.setOrigin(Align.center);
         background = new Image(PlanetaryConquest.galaxyBackgroundTexture);
         background.setScale(1.5f);
+        background.setOrigin(Align.center);
         group = new Group();
         group.setOrigin(0, 0);
         group.addActor(blackHole);
