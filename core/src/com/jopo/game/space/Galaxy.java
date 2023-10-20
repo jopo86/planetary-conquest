@@ -1,7 +1,9 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Align;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -15,12 +17,14 @@ public class Galaxy {
     public Galaxy() {
         solarSystems = new ArrayList<>();
         group = new Group();
+        group.setOrigin(0, 0);
         zoom = 1f;
     }
 
     public Galaxy(ArrayList<SolarSystem> solarSystems) {
         this.solarSystems = solarSystems;
         group = new Group();
+        group.setOrigin(-Gdx.graphics.getWidth() / 2f, -Gdx.graphics.getHeight() / 2f);
         zoom = 1f;
     }
 
@@ -53,15 +57,15 @@ public class Galaxy {
         // TODO: apply zoom
     }
 
-    public void translateAll(float amountX, float amountY) {
+    public void translate(float amountX, float amountY) {
         group.moveBy(amountX, amountY);
     }
 
-    public void translateAll(MathUtils.Point amount) {
+    public void translate(MathUtils.Point amount) {
         group.moveBy(amount.getX(), amount.getY());
     }
 
-    public void scaleAll(float amount) {
+    public void zoom(float amount) {
         group.setScale(amount);
     }
 
@@ -71,6 +75,10 @@ public class Galaxy {
 
     public SolarSystem getSolarSystem(int i) {
         return solarSystems.get(i);
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     public void setSolarSystems(ArrayList<SolarSystem> solarSystems) {

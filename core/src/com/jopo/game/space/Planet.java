@@ -1,6 +1,9 @@
 package com.jopo.game.space;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Align;
 import com.jopo.game.play.Player;
 import com.jopo.utils.ChanceEvent;
 import com.jopo.utils.MathUtils;
@@ -18,6 +21,7 @@ public class Planet extends AstronomicalBody {
     private float orbitAngle;
 
     public Planet() {
+        super();
         habited = false;
         occupant = null;
         resourceBases = new ArrayList<>();
@@ -26,6 +30,7 @@ public class Planet extends AstronomicalBody {
     }
 
     public Planet(byte type) {
+        super();
         this.type = type;
         habited = false;
         occupant = null;
@@ -39,74 +44,123 @@ public class Planet extends AstronomicalBody {
     protected void evalType() {
         switch (type) {
             case PlanetType.SMALL_BLUE -> {
-//                sprite = new Sprite(PlanetType.SmallBlue.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.SmallBlue.texture();
+                setTexture(texture);
                 radius = PlanetType.SmallBlue.radius;
-            }
-            case PlanetType.SMALL_RED -> {
-//                sprite = new Sprite(PlanetType.SmallRed.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.SmallRed.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
             case PlanetType.SMALL_GRAY -> {
-//                sprite = new Sprite(PlanetType.SmallGray.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.SmallGray.texture();
+                setTexture(texture);
                 radius = PlanetType.SmallGray.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.SMALL_LAVA -> {
+                Texture texture = PlanetType.SmallLava.texture();
+                setTexture(texture);
+                radius = PlanetType.SmallLava.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.SMALL_MARS -> {
+                Texture texture = PlanetType.SmallMars.texture();
+                setTexture(texture);
+                radius = PlanetType.SmallMars.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
             case PlanetType.MEDIUM_BLUE -> {
-//                sprite = new Sprite(PlanetType.MediumBlue.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.MediumBlue.texture();
+                setTexture(texture);
                 radius = PlanetType.MediumBlue.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
-            case PlanetType.MEDIUM_RED -> {
-//                sprite = new Sprite(PlanetType.MediumRed.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.MediumRed.radius;
-            }
-            case PlanetType.MEDIUM_GRAY -> {
-//                sprite = new Sprite(PlanetType.MediumGray.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.MediumGray.radius;
-            }
-            case PlanetType.MEDIUM_RED_RINGS -> {
-//                sprite = new Sprite(PlanetType.MediumRedRings.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.MediumRedRings.radius;
+            case PlanetType.MEDIUM_BLUE_RINGS -> {
+                Texture texture = PlanetType.MediumBlueRings.texture();
+                setTexture(texture);
+                radius = PlanetType.MediumBlueRings.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
             case PlanetType.MEDIUM_EARTH -> {
-//                sprite = new Sprite(PlanetType.MediumEarth.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.MediumEarth.texture();
+                setTexture(texture);
                 radius = PlanetType.MediumEarth.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.MEDIUM_GRAY -> {
+                Texture texture = PlanetType.MediumGray.texture();
+                setTexture(texture);
+                radius = PlanetType.MediumGray.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.MEDIUM_LAVA -> {
+                Texture texture = PlanetType.MediumLava.texture();
+                setTexture(texture);
+                radius = PlanetType.MediumLava.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.MEDIUM_MARS -> {
+                Texture texture = PlanetType.MediumMars.texture();
+                setTexture(texture);
+                radius = PlanetType.MediumMars.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
             case PlanetType.LARGE_BLUE -> {
-//                sprite = new Sprite(PlanetType.LargeBlue.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.LargeBlue.texture();
+                setTexture(texture);
                 radius = PlanetType.LargeBlue.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
-            case PlanetType.LARGE_RED -> {
-//                sprite = new Sprite(PlanetType.LargeRed.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.LargeRed.radius;
-            }
-            case PlanetType.LARGE_RED_RINGS -> {
-//                sprite = new Sprite(PlanetType.LargeRedRings.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.LargeRedRings.radius;
+            case PlanetType.LARGE_BLUE_RINGS -> {
+                Texture texture = PlanetType.LargeBlueRings.texture();
+                setTexture(texture);
+                radius = PlanetType.LargeBlueRings.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
             case PlanetType.LARGE_EARTH -> {
-//                sprite = new Sprite(PlanetType.LargeEarth.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = PlanetType.LargeEarth.texture();
+                setTexture(texture);
                 radius = PlanetType.LargeEarth.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
-            case PlanetType.GAS_GIANT -> {
-//                sprite = new Sprite(PlanetType.GasGiant.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.GasGiant.radius;
+            case PlanetType.LARGE_GRAY -> {
+                Texture texture = PlanetType.LargeGray.texture();
+                setTexture(texture);
+                radius = PlanetType.LargeGray.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
-            case PlanetType.GAS_GIANT_RINGS -> {
-//                sprite = new Sprite(PlanetType.GasGiantRings.texture());
-//                sprite.setPosition(x, y);
-                radius = PlanetType.GasGiantRings.radius;
+            case PlanetType.LARGE_LAVA -> {
+                Texture texture = PlanetType.LargeLava.texture();
+                setTexture(texture);
+                radius = PlanetType.LargeLava.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.LARGE_MARS -> {
+                Texture texture = PlanetType.LargeMars.texture();
+                setTexture(texture);
+                radius = PlanetType.LargeMars.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case PlanetType.LARGE_SATURN -> {
+                Texture texture = PlanetType.LargeSaturn.texture();
+                setTexture(texture);
+                radius = PlanetType.LargeSaturn.radius;
+                float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
             }
         }
     }
@@ -115,19 +169,22 @@ public class Planet extends AstronomicalBody {
         final Planet planet = new Planet();
         ChanceEvent.randEvent(
                 new ChanceEvent(() -> planet.setType(PlanetType.SMALL_BLUE), PlanetType.SmallBlue.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.SMALL_RED), PlanetType.SmallRed.chance),
                 new ChanceEvent(() -> planet.setType(PlanetType.SMALL_GRAY), PlanetType.SmallGray.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.SMALL_LAVA), PlanetType.SmallLava.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.SMALL_MARS), PlanetType.SmallMars.chance),
                 new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_BLUE), PlanetType.MediumBlue.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_RED), PlanetType.MediumRed.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_RED_RINGS), PlanetType.MediumRedRings.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_GRAY), PlanetType.MediumGray.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_BLUE_RINGS), PlanetType.MediumBlueRings.chance),
                 new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_EARTH), PlanetType.MediumEarth.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_GRAY), PlanetType.MediumGray.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_LAVA), PlanetType.MediumLava.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.MEDIUM_MARS), PlanetType.MediumMars.chance),
                 new ChanceEvent(() -> planet.setType(PlanetType.LARGE_BLUE), PlanetType.LargeBlue.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_RED), PlanetType.LargeRed.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_RED_RINGS), PlanetType.LargeRedRings.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_BLUE_RINGS), PlanetType.LargeBlueRings.chance),
                 new ChanceEvent(() -> planet.setType(PlanetType.LARGE_EARTH), PlanetType.LargeEarth.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.GAS_GIANT), PlanetType.GasGiantRings.chance),
-                new ChanceEvent(() -> planet.setType(PlanetType.GAS_GIANT_RINGS), PlanetType.GasGiantRings.chance)
+                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_GRAY), PlanetType.LargeLava.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_LAVA), PlanetType.LargeLava.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_MARS), PlanetType.LargeMars.chance),
+                new ChanceEvent(() -> planet.setType(PlanetType.LARGE_SATURN), PlanetType.LargeSaturn.chance)
         );
         return planet;
     }
@@ -198,13 +255,15 @@ public class Planet extends AstronomicalBody {
     }
 
     public void orbitStep(float delta) {
-        orbitAngle += orbitSpeed * delta;
+        orbitAngle += orbitSpeed * delta / 100f;
         if (orbitAngle >= 360) orbitAngle -= 360;
     }
 
     public void goToOrbitPosition(Star star) {
-        setX(star.getX() + (int)(Math.cos(MathUtils.degToRad(orbitAngle)) * orbitRadius));
-        setY(star.getY() + (int)(Math.sin(MathUtils.degToRad(orbitAngle)) * orbitRadius));
+        setPosition(
+                (float)(star.getCenterX() + orbitRadius * Math.sin(orbitAngle) - getWidth() / 2f),
+                (float)(star.getCenterY() + orbitRadius * Math.cos(orbitAngle) - getHeight() / 2f)
+        );
     }
 
     public void giveResources() {

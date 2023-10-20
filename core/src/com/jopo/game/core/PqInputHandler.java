@@ -32,7 +32,9 @@ public class PqInputHandler implements InputProcessor {
     }
 
     public boolean isKeyTapped(int keycode) {
-        return Gdx.input.isKeyJustPressed(keycode);
+        boolean tmp = keys[keycode];
+        keys[keycode] = false;
+        return tmp;
     }
 
     public boolean isLeftMouseButtonPressed()  {
@@ -56,7 +58,9 @@ public class PqInputHandler implements InputProcessor {
     }
 
     public float getScroll() {
-        return scroll;
+        float tmp = scroll;
+        scroll = 0f;
+        return tmp;
     }
 
     public MathUtils.Point getMouse() {

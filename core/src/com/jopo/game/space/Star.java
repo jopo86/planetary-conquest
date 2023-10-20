@@ -1,6 +1,6 @@
 package com.jopo.game.space;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Texture;
 import com.jopo.utils.ChanceEvent;
 
 public class Star extends AstronomicalBody {
@@ -17,45 +17,35 @@ public class Star extends AstronomicalBody {
     @Override
     protected void evalType() {
         switch(type) {
-            case StarType.SMALL_WHITE -> {
-//                sprite = new Sprite(StarType.SmallWhite.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.SmallWhite.radius;
+            case StarType.SMALL_YELLOW -> {
+                Texture texture = StarType.SmallYellow.texture();
+                setTexture(texture);
+                radius = StarType.SmallYellow.radius;
+                setSize(radius, radius);
             }
-            case StarType.SMALL_ORANGE -> {
-//                sprite = new Sprite(StarType.SmallOrange.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.SmallOrange.radius;
-            }
-            case StarType.MEDIUM_WHITE -> {
-//                sprite = new Sprite(StarType.MediumWhite.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.MediumWhite.radius;
-            }
-            case StarType.MEDIUM_ORANGE -> {
-//                sprite = new Sprite(StarType.MediumOrange.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.MediumOrange.radius;
+            case StarType.MEDIUM_YELLOW -> {
+                Texture texture = StarType.MediumYellow.texture();
+                setTexture(texture);
+                radius = StarType.MediumYellow.radius;
+                setSize(radius, radius);
             }
             case StarType.MEDIUM_BLUE -> {
-//                sprite = new Sprite(StarType.MediumBlue.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = StarType.MediumBlue.texture();
+                setTexture(texture);
                 radius = StarType.MediumBlue.radius;
+                setSize(radius, radius);
             }
-            case StarType.LARGE_WHITE -> {
-//                sprite = new Sprite(StarType.LargeWhite.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.LargeWhite.radius;
-            }
-            case StarType.LARGE_ORANGE -> {
-//                sprite = new Sprite(StarType.LargeOrange.texture());
-//                sprite.setPosition(x, y);
-                radius = StarType.LargeOrange.radius;
+            case StarType.LARGE_YELLOW -> {
+                Texture texture = StarType.LargeYellow.texture();
+                setTexture(texture);
+                radius = StarType.LargeYellow.radius;
+                setSize(radius, radius);
             }
             case StarType.LARGE_BLUE -> {
-//                sprite = new Sprite(StarType.LargeBlue.texture());
-//                sprite.setPosition(x, y);
+                Texture texture = StarType.LargeBlue.texture();
+                setTexture(texture);
                 radius = StarType.LargeBlue.radius;
+                setSize(radius, radius);
             }
         }
     }
@@ -63,13 +53,10 @@ public class Star extends AstronomicalBody {
     public static Star randStar() {
         Star star = new Star();
         ChanceEvent.randEvent(
-                new ChanceEvent(() -> star.setType(StarType.SMALL_WHITE), StarType.SmallWhite.chance),
-                new ChanceEvent(() -> star.setType(StarType.SMALL_ORANGE), StarType.SmallOrange.chance),
-                new ChanceEvent(() -> star.setType(StarType.MEDIUM_WHITE), StarType.MediumWhite.chance),
-                new ChanceEvent(() -> star.setType(StarType.MEDIUM_ORANGE), StarType.MediumOrange.chance),
+                new ChanceEvent(() -> star.setType(StarType.SMALL_YELLOW), StarType.SmallYellow.chance),
+                new ChanceEvent(() -> star.setType(StarType.MEDIUM_YELLOW), StarType.MediumYellow.chance),
                 new ChanceEvent(() -> star.setType(StarType.MEDIUM_BLUE), StarType.MediumBlue.chance),
-                new ChanceEvent(() -> star.setType(StarType.LARGE_WHITE), StarType.LargeWhite.chance),
-                new ChanceEvent(() -> star.setType(StarType.LARGE_ORANGE), StarType.LargeOrange.chance),
+                new ChanceEvent(() -> star.setType(StarType.LARGE_YELLOW), StarType.LargeYellow.chance),
                 new ChanceEvent(() -> star.setType(StarType.LARGE_BLUE), StarType.LargeBlue.chance)
         );
         return star;

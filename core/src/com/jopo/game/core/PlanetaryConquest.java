@@ -21,7 +21,6 @@ public class PlanetaryConquest extends Game {
 	public static Texture marsPlanetTexture;
 	public static Texture saturnPlanetTexture;
 
-	public static Texture whiteStarTexture;
 	public static Texture yellowStarTexture;
 	public static Texture blueStarTexture;
 
@@ -40,18 +39,17 @@ public class PlanetaryConquest extends Game {
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
 
 		bluePlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		bluePlanetRingsTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		earthPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		grayPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		lavaPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		marsPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		saturnPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		bluePlanetRingsTexture = new Texture(Gdx.files.internal("textures\\planet-blue-rings.png"));
+		earthPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-earth.png"));
+		grayPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-gray.png"));
+		lavaPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-lava.png"));
+		marsPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-mars.png"));
+		saturnPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-saturn.png"));
 
-		whiteStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		yellowStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
-		blueStarTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		yellowStarTexture = new Texture(Gdx.files.internal("textures\\star-yellow.png"));
+		blueStarTexture = new Texture(Gdx.files.internal("textures\\star-blue.png"));
 
-		blackHoleTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
+		blackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole.png"));
 
 		setScreen(new PqTitleScreen(this));
 	}
@@ -71,12 +69,11 @@ public class PlanetaryConquest extends Game {
 		lavaPlanetTexture.dispose();
 		marsPlanetTexture.dispose();
 		saturnPlanetTexture.dispose();
-		whiteStarTexture.dispose();
 		yellowStarTexture.dispose();
 		blueStarTexture.dispose();
 		blackHoleTexture.dispose();
-		woodResourceBaseTexture.dispose();
-		stoneResourceBaseTexture.dispose();
-		metalResourceBaseTexture.dispose();
+//		woodResourceBaseTexture.dispose();
+//		stoneResourceBaseTexture.dispose();
+//		metalResourceBaseTexture.dispose();
 	}
 }

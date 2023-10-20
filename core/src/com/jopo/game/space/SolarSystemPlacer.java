@@ -14,8 +14,8 @@ public class SolarSystemPlacer {
         placements = new ArrayList<>();
         switch(players) {
             case 2 -> {
-                placements.add(new MathUtils.Point(-500, 300));
-                placements.add(new MathUtils.Point(500, -300));
+                placements.add(new MathUtils.Point(-700, 400));
+                placements.add(new MathUtils.Point(700, -400));
             }
             case 3 -> {
                 placements.add(new MathUtils.Point(-500, -300));

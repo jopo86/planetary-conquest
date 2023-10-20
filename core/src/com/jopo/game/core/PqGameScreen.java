@@ -17,7 +17,7 @@ public class PqGameScreen implements Screen {
 
     private final PlanetaryConquest game;
     private final Galaxy galaxy;
-    private float galaxyScale;
+    private float galaxyZoom;
 
     private final Stage stage;
     private final Table table;
@@ -30,8 +30,8 @@ public class PqGameScreen implements Screen {
         input = game.inputHandler;
         galaxy = new Galaxy();
         galaxy.populate((short)2);
-        galaxy.translateAll(200, 700);
-        galaxyScale = 1f;
+        galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
+        galaxyZoom = 1f;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(new InputMultiplexer(stage, input));
 
@@ -55,7 +55,9 @@ public class PqGameScreen implements Screen {
 
     private void update(float delta) {
         input.update();
-        if (input.isLeftMouseButtonPressed()) galaxy.translateAll(input.getDeltaMouse());
+        if (input.isLeftMouseButtonPressed()) galaxy.translate(input.getDeltaMouse());
+        galaxyZoom += -input.getScroll() / 50f;
+        galaxy.zoom(galaxyZoom);
     }
 
     @Override

@@ -183,7 +183,7 @@ public class MathUtils {
         }
 
         private void updateCircumference() {
-            area = (float)(2.0 * Math.PI * (double)radius);
+            circumference = (float)(2.0 * Math.PI * (double)radius);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.jopo.game.space;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -24,11 +25,11 @@ public class SolarSystem {
         int collectiveRadius = 50 + star.getRadius();
         int numPlanets = MathUtils.randInt(3, 6);
         for (int i = 0; i < numPlanets; i++) {
-            collectiveRadius += MathUtils.randInt(50, 100);
+            collectiveRadius += MathUtils.randInt(100, 150);
             planets.add(Planet.randPlanet());
             planets.get(i).setOrbitRadius(collectiveRadius);
             planets.get(i).setOrbitAngle(MathUtils.randInt(0, 361));
-            planets.get(i).setOrbitSpeed(MathUtils.randInt(10, 25));
+            planets.get(i).setOrbitSpeed(MathUtils.randInt(25, 50));
         }
     }
 

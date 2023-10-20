@@ -1,10 +1,7 @@
 package com.jopo.game.core;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -16,51 +13,40 @@ import com.jopo.utils.MathUtils;
 
 public class PqGameRenderer {
 
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private ShapeRenderer shapeRenderer;
     private Stage stage;
+    private ShapeRenderer shapeRenderer;
     private Galaxy galaxy;
     private Sprite galaxyBackground;
-    private float scale;
 
     public PqGameRenderer(Stage stage, Galaxy galaxy) {
-        batch = new SpriteBatch();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false);
-        camera.translate(-Gdx.graphics.getWidth() / 2f, -Gdx.graphics.getHeight() / 2f);
-        shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setAutoShapeType(true);
-        shapeRenderer.setProjectionMatrix(camera.combined);
         this.stage = stage;
+        shapeRenderer = new ShapeRenderer();
         this.galaxy = galaxy;
+        stage.addActor(galaxy.getGroup());
 //        galaxyBackground = new Sprite(PlanetaryConquest.galaxyBackgroundTexture);
-        scale = 1f;
     }
 
     public void render() {
-        camera.update();
-        ScreenUtils.clear(1f, 1f, 1f, 1f);
-        stage.draw();
         galaxy.update(Gdx.graphics.getDeltaTime());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        ScreenUtils.clear(.03f, 0f, .07f, 0f);
+        stage.act();
+        drawRings();
+        stage.draw();
+    }
+
+    public void drawRings() {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(.18f, .15f, .22f, 0f);
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
-//            solarSystem.getStar().getSprite().draw(batch);
-            shapeRenderer.setColor(1f, 1f, 0f, 1f);
-            shapeRenderer.circle(solarSystem.getStar().getX(), solarSystem.getStar().getY(), solarSystem.getStar().getRadius());
             for (Planet planet : solarSystem.getPlanets()) {
-//                planet.getSprite().draw(batch);
-                shapeRenderer.set(ShapeRenderer.ShapeType.Line);
-                shapeRenderer.setColor(.8f, .8f, .8f, .5f);
-                shapeRenderer.circle(solarSystem.getStar().getX(), solarSystem.getStar().getY(), MathUtils.distance(solarSystem.getStar().getX(), solarSystem.getStar().getY(), planet.getX(), planet.getY()));
-                shapeRenderer.set(ShapeRenderer.ShapeType.Filled);
-                shapeRenderer.setColor(.6f, .6f, .6f, 1f);
-                shapeRenderer.circle(planet.getX(), planet.getY(), planet.getRadius());
+                float radius = MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter());
+                shapeRenderer.circle(galaxy.getGroup().getX() + galaxy.getGroup().getScaleX() * solarSystem.getStar().getCenterX(),
+                        galaxy.getGroup().getY() + galaxy.getGroup().getScaleY() * solarSystem.getStar().getCenterY(),
+                        galaxy.getGroup().getScaleX() * radius,
+                        (int)((new MathUtils.Circle(0, 0, radius).getCircumference()) / 20f)
+                );
             }
         }
         shapeRenderer.end();
-        scale -= .00000001f;
-        galaxy.scaleAll(scale);
     }
-
 }
