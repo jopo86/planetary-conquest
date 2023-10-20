@@ -7,41 +7,23 @@ public final class BlackHoleType {
 
     private BlackHoleType() {}
 
-    public static final byte SMALL = 0;
-    public static final byte MEDIUM = 1;
-    public static final byte LARGE = 2;
-    public static final byte SUPERMASSIVE = 3;
+    public static final byte DEFAULT = 0;
+    public static final byte BLUE = 1;
 
-    public static final class Small {
-        public static final int radius = 200;
-        public static Texture texture() {
-            return PlanetaryConquest.blackHoleTexture;
-        }
-        public static final float chance = 100/4f;
-    }
-
-    public static final class Medium {
-        public static final int radius = 250;
-        public static Texture texture() {
-            return PlanetaryConquest.blackHoleTexture;
-        }
-        public static final float chance = 100/4f;
-    }
-
-    public static final class Large {
-        public static final int radius = 300;
-        public static Texture texture() {
-            return PlanetaryConquest.blackHoleTexture;
-        }
-        public static final float chance = 100/4f;
-    }
-
-    public static final class Supermassive {
+    public static final class Default {
         public static final int radius = 400;
         public static Texture texture() {
             return PlanetaryConquest.blackHoleTexture;
         }
-        public static final float chance = 100/4f;
+        public static final float chance = 100/2f;
+    }
+
+    public static final class Blue {
+        public static final int radius = 400;
+        public static Texture texture() {
+            return PlanetaryConquest.blueBlackHoleTexture;
+        }
+        public static final float chance = 100/2f;
     }
 
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -23,6 +24,8 @@ public class PqGameScreen implements Screen {
     private final PqGameRenderer renderer;
     private final PqInputHandler input;
 
+    private final Vector2 tmpVec2;
+
     public PqGameScreen(final PlanetaryConquest game) {
         input = game.inputHandler;
         galaxy = new Galaxy();
@@ -37,6 +40,8 @@ public class PqGameScreen implements Screen {
         uiStage.addActor(ui);
 
         renderer = new PqGameRenderer(gameStage, uiStage, galaxy);
+
+        tmpVec2 = new Vector2(0, 0);
 
     }
 

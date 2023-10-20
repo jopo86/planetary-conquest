@@ -20,10 +20,17 @@ public class BlackHole extends AstronomicalBody {
     @Override
     protected void evalType() {
         switch (type) {
-            case BlackHoleType.LARGE -> {
-                Texture texture = BlackHoleType.Large.texture();
+            case BlackHoleType.DEFAULT -> {
+                Texture texture = BlackHoleType.Default.texture();
                 setTexture(texture);
-                radius = BlackHoleType.Large.radius;
+                radius = BlackHoleType.Default.radius;
+                float aspectRatio = (float) texture.getWidth() / texture.getHeight();
+                setSize(radius * aspectRatio, radius);
+            }
+            case BlackHoleType.BLUE -> {
+                Texture texture = BlackHoleType.Blue.texture();
+                setTexture(texture);
+                radius = BlackHoleType.Blue.radius;
                 float aspectRatio = (float) texture.getWidth() / texture.getHeight();
                 setSize(radius * aspectRatio, radius);
             }
@@ -33,10 +40,8 @@ public class BlackHole extends AstronomicalBody {
     public static BlackHole randBlackHole() {
         BlackHole blackHole = new BlackHole();
         ChanceEvent.randEvent(
-                new ChanceEvent(() -> blackHole.setType(BlackHoleType.SMALL), BlackHoleType.Small.chance),
-                new ChanceEvent(() -> blackHole.setType(BlackHoleType.MEDIUM), BlackHoleType.Medium.chance),
-                new ChanceEvent(() -> blackHole.setType(BlackHoleType.LARGE), BlackHoleType.Large.chance),
-                new ChanceEvent(() -> blackHole.setType(BlackHoleType.SUPERMASSIVE), BlackHoleType.Supermassive.chance)
+                new ChanceEvent(() -> blackHole.setType(BlackHoleType.DEFAULT), BlackHoleType.Default.chance),
+                new ChanceEvent(() -> blackHole.setType(BlackHoleType.BLUE), BlackHoleType.Blue.chance)
         );
         return blackHole;
     }

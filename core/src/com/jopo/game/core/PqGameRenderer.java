@@ -36,6 +36,10 @@ public class PqGameRenderer {
     public void render() {
         galaxy.update(Gdx.graphics.getDeltaTime());
         ScreenUtils.clear(.03f, 0f, .07f, 0f);
+        batch.begin();
+        galaxy.getBackground().setPosition(galaxy.getGroup().getX() * .1f - galaxy.getBackground().getWidth() / 2f, galaxy.getGroup().getY() * .1f - galaxy.getBackground().getHeight() / 2f);
+        galaxy.getBackground().draw(batch, .6f);
+        batch.end();
         gameStage.act();
         if (shouldDrawRings) drawRings();
         gameStage.draw();

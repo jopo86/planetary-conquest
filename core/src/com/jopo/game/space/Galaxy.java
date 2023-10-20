@@ -1,9 +1,11 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
+import com.jopo.game.core.PlanetaryConquest;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -13,14 +15,16 @@ public class Galaxy {
     private ArrayList<SolarSystem> solarSystems;
     private BlackHole blackHole;
     private Group group;
+    private Image background;
     private float zoom;
 
     public Galaxy() {
         solarSystems = new ArrayList<>();
-        blackHole = new BlackHole(BlackHoleType.LARGE);
+        blackHole = BlackHole.randBlackHole();
         blackHole.setPosition(0 - blackHole.getImageWidth(), 0 - blackHole.getImageHeight());
         blackHole.setOrigin(Align.center);
-        blackHole.setRotation(-25f);
+        background = new Image(PlanetaryConquest.galaxyBackgroundTexture);
+        background.setScale(1.5f);
         group = new Group();
         group.setOrigin(0, 0);
         group.addActor(blackHole);
@@ -62,7 +66,6 @@ public class Galaxy {
                 planet.goToOrbitPosition(solarSystem.getStar());
             }
         }
-        // TODO: apply zoom
     }
 
     public void translate(float amountX, float amountY) {
@@ -87,6 +90,10 @@ public class Galaxy {
 
     public BlackHole getBlackHole() {
         return blackHole;
+    }
+
+    public Image getBackground() {
+        return background;
     }
 
     public Group getGroup() {

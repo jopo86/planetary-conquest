@@ -23,6 +23,7 @@ public class PlanetaryConquest extends Game {
 	public static Texture blueStarTexture;
 
 	public static Texture blackHoleTexture;
+	public static Texture blueBlackHoleTexture;
 
 	public static Texture woodResourceBaseTexture;
 	public static Texture stoneResourceBaseTexture;
@@ -48,6 +49,9 @@ public class PlanetaryConquest extends Game {
 		blueStarTexture = new Texture(Gdx.files.internal("textures\\star-blue.png"));
 
 		blackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole.png"));
+		blueBlackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole-blue.png"));
+
+		galaxyBackgroundTexture = new Texture(Gdx.files.internal("textures\\galaxy-background.png"));
 
 		setScreen(new PqTitleScreen(this));
 	}
@@ -70,6 +74,7 @@ public class PlanetaryConquest extends Game {
 		yellowStarTexture.dispose();
 		blueStarTexture.dispose();
 		blackHoleTexture.dispose();
+		blueBlackHoleTexture.dispose();
 //		woodResourceBaseTexture.dispose();
 //		stoneResourceBaseTexture.dispose();
 //		metalResourceBaseTexture.dispose();

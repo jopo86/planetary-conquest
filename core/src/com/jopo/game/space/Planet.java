@@ -256,7 +256,7 @@ public class Planet extends AstronomicalBody {
 
     public void orbitStep(float delta) {
         orbitAngle += orbitSpeed * delta / 100f;
-        if (orbitAngle >= 360) orbitAngle -= 360;
+        if (orbitAngle >= 360) orbitAngle = 0;
     }
 
     public void goToOrbitPosition(Star star) {
