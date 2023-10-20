@@ -28,7 +28,7 @@ public class PqGameScreen implements Screen {
         galaxy = new Galaxy();
         galaxy.populate((short)3);
         galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
-        galaxyZoom = 1f;
+        galaxyZoom = .7f;
         gameStage = new Stage(new ScreenViewport());
         uiStage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, uiStage, input));
@@ -57,7 +57,9 @@ public class PqGameScreen implements Screen {
         galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 3f);
         galaxy.zoom(galaxyZoom);
 
-        if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) renderer.setShouldDrawRings(!renderer.getShouldDrawRings());
+        if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) {
+            renderer.toggleShouldDrawRings();
+        }
     }
 
     @Override

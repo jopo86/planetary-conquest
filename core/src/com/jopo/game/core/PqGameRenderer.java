@@ -67,4 +67,8 @@ public class PqGameRenderer {
     public void setShouldDrawRings(boolean shouldDrawRings) {
         this.shouldDrawRings = shouldDrawRings;
     }
+
+    public void toggleShouldDrawRings() {
+        shouldDrawRings = !shouldDrawRings;
+    }
 }

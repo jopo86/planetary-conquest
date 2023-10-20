@@ -18,9 +18,9 @@ public class SolarSystemPlacer {
                 placements.add(new MathUtils.Point(1300, -800));
             }
             case 3 -> {
-                placements.add(new MathUtils.Point(-1300, -1000));
-                placements.add(new MathUtils.Point(1300, -1000));
-                placements.add(new MathUtils.Point(0, 1000));
+                placements.add(new MathUtils.Point(-1500, -1200));
+                placements.add(new MathUtils.Point(1500, -1200));
+                placements.add(new MathUtils.Point(0, 1200));
             }
             case 4 -> {
                 placements.add(new MathUtils.Point(500, 300));
