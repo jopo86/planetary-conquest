@@ -31,7 +31,7 @@ public class PqGameScreen implements Screen {
     public PqGameScreen(final PlanetaryConquest game) {
         input = game.inputHandler;
         galaxy = new Galaxy();
-        galaxy.populate((short)5);
+        galaxy.populate((short)6);
         galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
         galaxyZoom = .5f;
         gameStage = new Stage(new ScreenViewport());

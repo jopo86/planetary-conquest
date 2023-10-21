@@ -19,7 +19,7 @@ public class SolarSystem {
         star = Star.randStar();
         star.setPosition(starX, starY);
         int collectiveRadius = 50 + star.getRadius();
-        int numPlanets = MathUtils.randInt(PqConstants.NUM_PLANETS_MIN, PqConstants.NUM_PLANETS_MAX);
+        int numPlanets = MathUtils.randInt(PqConstants.NUM_PLANETS_MIN, PqConstants.NUM_PLANETS_MAX + 1);
         for (int i = 0; i < numPlanets; i++) {
             collectiveRadius += MathUtils.randInt(PqConstants.ORBIT_RADIUS_GAP_MIN, PqConstants.ORBIT_RADIUS_GAP_MAX);
             planets.add(Planet.randPlanet());

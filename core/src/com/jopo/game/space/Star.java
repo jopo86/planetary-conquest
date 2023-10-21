@@ -23,6 +23,18 @@ public class Star extends AstronomicalBody {
                 radius = StarType.SmallYellow.radius;
                 setSize(radius * 2, radius * 2);
             }
+            case StarType.SMALL_BLUE -> {
+                Texture texture = StarType.SmallBlue.texture();
+                setTexture(texture);
+                radius = StarType.SmallBlue.radius;
+                setSize(radius * 2, radius * 2);
+            }
+            case StarType.SMALL_RED -> {
+                Texture texture = StarType.SmallRed.texture();
+                setTexture(texture);
+                radius = StarType.SmallRed.radius;
+                setSize(radius * 2, radius * 2);
+            }
             case StarType.MEDIUM_YELLOW -> {
                 Texture texture = StarType.MediumYellow.texture();
                 setTexture(texture);
@@ -33,6 +45,12 @@ public class Star extends AstronomicalBody {
                 Texture texture = StarType.MediumBlue.texture();
                 setTexture(texture);
                 radius = StarType.MediumBlue.radius;
+                setSize(radius * 2, radius * 2);
+            }
+            case StarType.MEDIUM_RED -> {
+                Texture texture = StarType.MediumRed.texture();
+                setTexture(texture);
+                radius = StarType.MediumRed.radius;
                 setSize(radius * 2, radius * 2);
             }
             case StarType.LARGE_YELLOW -> {
@@ -47,6 +65,12 @@ public class Star extends AstronomicalBody {
                 radius = StarType.LargeBlue.radius;
                 setSize(radius * 2, radius * 2);
             }
+            case StarType.LARGE_RED -> {
+                Texture texture = StarType.LargeRed.texture();
+                setTexture(texture);
+                radius = StarType.LargeRed.radius;
+                setSize(radius * 2, radius * 2);
+            }
         }
     }
 
@@ -54,10 +78,14 @@ public class Star extends AstronomicalBody {
         Star star = new Star();
         ChanceEvent.randEvent(
                 new ChanceEvent(() -> star.setType(StarType.SMALL_YELLOW), StarType.SmallYellow.chance),
+                new ChanceEvent(() -> star.setType(StarType.SMALL_BLUE), StarType.SmallBlue.chance),
+                new ChanceEvent(() -> star.setType(StarType.SMALL_RED), StarType.SmallRed.chance),
                 new ChanceEvent(() -> star.setType(StarType.MEDIUM_YELLOW), StarType.MediumYellow.chance),
                 new ChanceEvent(() -> star.setType(StarType.MEDIUM_BLUE), StarType.MediumBlue.chance),
+                new ChanceEvent(() -> star.setType(StarType.MEDIUM_RED), StarType.MediumRed.chance),
                 new ChanceEvent(() -> star.setType(StarType.LARGE_YELLOW), StarType.LargeYellow.chance),
-                new ChanceEvent(() -> star.setType(StarType.LARGE_BLUE), StarType.LargeBlue.chance)
+                new ChanceEvent(() -> star.setType(StarType.LARGE_BLUE), StarType.LargeBlue.chance),
+                new ChanceEvent(() -> star.setType(StarType.LARGE_RED), StarType.LargeRed.chance)
         );
         return star;
     }
