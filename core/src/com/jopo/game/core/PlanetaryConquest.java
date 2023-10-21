@@ -29,6 +29,7 @@ public class PlanetaryConquest extends Game {
 
 	public static Texture yellowStarTexture;
 	public static Texture blueStarTexture;
+	public static Texture redStarTexture;
 
 	public static Texture blackHoleTexture;
 	public static Texture blueBlackHoleTexture;
@@ -62,6 +63,7 @@ public class PlanetaryConquest extends Game {
 
 		yellowStarTexture = new Texture(Gdx.files.internal("textures\\star-yellow.png"));
 		blueStarTexture = new Texture(Gdx.files.internal("textures\\star-blue.png"));
+		redStarTexture = new Texture(Gdx.files.internal("textures\\star-red.png"));
 
 		blackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole.png"));
 		blueBlackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole-blue.png"));

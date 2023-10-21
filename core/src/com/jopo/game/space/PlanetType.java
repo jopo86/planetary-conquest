@@ -26,7 +26,7 @@ public final class PlanetType {
     public static final byte LARGE_SATURN = 16;
 
     public static final class SmallBlue {
-        public static final int radius = 45;
+        public static final int radius = 60;
         public static Texture texture() {
             return PlanetaryConquest.bluePlanetTexture;
         }
@@ -34,7 +34,7 @@ public final class PlanetType {
     }
 
     public static final class SmallGray {
-        public static final int radius = 45;
+        public static final int radius = 60;
         public static Texture texture() {
             return PlanetaryConquest.grayPlanetTexture;
         }
@@ -42,7 +42,7 @@ public final class PlanetType {
     }
 
     public static final class SmallLava {
-        public static final int radius = 45;
+        public static final int radius = 60;
         public static Texture texture() {
             return PlanetaryConquest.lavaPlanetTexture;
         }
@@ -50,7 +50,7 @@ public final class PlanetType {
     }
 
     public static final class SmallMars {
-        public static final int radius = 45;
+        public static final int radius = 60;
         public static Texture texture() {
             return PlanetaryConquest.marsPlanetTexture;
         }
@@ -58,7 +58,7 @@ public final class PlanetType {
     }
 
     public static final class MediumBlue {
-        public static final int radius = 60;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.bluePlanetTexture;
         }
@@ -66,7 +66,7 @@ public final class PlanetType {
     }
 
     public static final class MediumBlueRings {
-        public static final int radius = 60;
+        public static final int radius = 65;
         public static Texture texture() {
             return PlanetaryConquest.bluePlanetRingsTexture;
         }
@@ -74,7 +74,7 @@ public final class PlanetType {
     }
 
     public static final class MediumEarth {
-        public static final int radius = 60;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.earthPlanetTexture;
         }
@@ -82,7 +82,7 @@ public final class PlanetType {
     }
 
     public static final class MediumGray {
-        public static final int radius = 60;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.grayPlanetTexture;
         }
@@ -90,7 +90,7 @@ public final class PlanetType {
     }
 
     public static final class MediumLava {
-        public static final int radius = 60;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.lavaPlanetTexture;
         }
@@ -98,7 +98,7 @@ public final class PlanetType {
     }
 
     public static final class MediumMars {
-        public static final int radius = 60;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.marsPlanetTexture;
         }
@@ -106,7 +106,7 @@ public final class PlanetType {
     }
 
     public static final class LargeBlue {
-        public static final int radius = 75;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.bluePlanetTexture;
         }
@@ -114,7 +114,7 @@ public final class PlanetType {
     }
 
     public static final class LargeBlueRings {
-        public static final int radius = 75;
+        public static final int radius = 80;
         public static Texture texture() {
             return PlanetaryConquest.bluePlanetRingsTexture;
         }
@@ -122,7 +122,7 @@ public final class PlanetType {
     }
 
     public static final class LargeEarth {
-        public static final int radius = 75;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.earthPlanetTexture;
         }
@@ -130,7 +130,7 @@ public final class PlanetType {
     }
 
     public static final class LargeGray {
-        public static final int radius = 75;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.grayPlanetTexture;
         }
@@ -138,7 +138,7 @@ public final class PlanetType {
     }
 
     public static final class LargeLava {
-        public static final int radius = 75;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.lavaPlanetTexture;
         }
@@ -146,7 +146,7 @@ public final class PlanetType {
     }
 
     public static final class LargeMars {
-        public static final int radius = 75;
+        public static final int radius = 100;
         public static Texture texture() {
             return PlanetaryConquest.marsPlanetTexture;
         }

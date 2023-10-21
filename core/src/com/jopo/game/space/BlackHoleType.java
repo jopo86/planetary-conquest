@@ -11,7 +11,7 @@ public final class BlackHoleType {
     public static final byte BLUE = 1;
 
     public static final class Default {
-        public static final int radius = 400;
+        public static final int radius = 700;
         public static Texture texture() {
             return PlanetaryConquest.blackHoleTexture;
         }
@@ -19,11 +19,10 @@ public final class BlackHoleType {
     }
 
     public static final class Blue {
-        public static final int radius = 400;
+        public static final int radius = 700;
         public static Texture texture() {
             return PlanetaryConquest.blueBlackHoleTexture;
         }
         public static final float chance = 100/2f;
     }
-
 }
