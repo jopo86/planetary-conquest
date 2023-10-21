@@ -9,7 +9,7 @@ import com.jopo.utils.MathUtils;
 
 public abstract class AstronomicalBody extends Image {
 
-    protected MathUtils.Circle hitbox;
+    protected MathUtils.Circle hitbox = new MathUtils.Circle(0, 0, 0);
     protected int radius;
 
     protected AstronomicalBody() {
@@ -40,5 +40,23 @@ public abstract class AstronomicalBody extends Image {
 
     public int getRadius() {
         return radius;
+    }
+
+    @Override
+    public void setX(float x) {
+        super.setX(x);
+        hitbox.setX(x);
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
+        hitbox.setY(y);
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        hitbox.setPosition(x, y);
     }
 }

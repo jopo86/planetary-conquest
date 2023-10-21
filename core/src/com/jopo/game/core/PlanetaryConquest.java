@@ -19,6 +19,14 @@ public class PlanetaryConquest extends Game {
 	public static Texture marsPlanetTexture;
 	public static Texture saturnPlanetTexture;
 
+	public static Texture bluePlanetSelectedTexture;
+	public static Texture bluePlanetRingsSelectedTexture;
+	public static Texture earthPlanetSelectedTexture;
+	public static Texture grayPlanetSelectedTexture;
+	public static Texture lavaPlanetSelectedTexture;
+	public static Texture marsPlanetSelectedTexture;
+	public static Texture saturnPlanetSelectedTexture;
+
 	public static Texture yellowStarTexture;
 	public static Texture blueStarTexture;
 
@@ -34,7 +42,6 @@ public class PlanetaryConquest extends Game {
 	@Override
 	public void create () {
 		inputHandler = new PqInputHandler();
-		Gdx.input.setInputProcessor(inputHandler);
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
 
 		bluePlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
@@ -44,6 +51,14 @@ public class PlanetaryConquest extends Game {
 		lavaPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-lava.png"));
 		marsPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-mars.png"));
 		saturnPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-saturn.png"));
+
+		bluePlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-blue-selected.png"));
+		bluePlanetRingsSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-blue-rings-selected.png"));
+		earthPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-earth-selected.png"));
+		grayPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-gray-selected.png"));
+		lavaPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-lava-selected.png"));
+		marsPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-mars-selected.png"));
+		saturnPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-saturn-selected.png"));
 
 		yellowStarTexture = new Texture(Gdx.files.internal("textures\\star-yellow.png"));
 		blueStarTexture = new Texture(Gdx.files.internal("textures\\star-blue.png"));

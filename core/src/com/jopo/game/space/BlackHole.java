@@ -25,14 +25,14 @@ public class BlackHole extends AstronomicalBody {
                 setTexture(texture);
                 radius = BlackHoleType.Default.radius;
                 float aspectRatio = (float) texture.getWidth() / texture.getHeight();
-                setSize(radius * aspectRatio, radius);
+                setSize(radius * 2 * aspectRatio, radius * 2);
             }
             case BlackHoleType.BLUE -> {
                 Texture texture = BlackHoleType.Blue.texture();
                 setTexture(texture);
                 radius = BlackHoleType.Blue.radius;
                 float aspectRatio = (float) texture.getWidth() / texture.getHeight();
-                setSize(radius * aspectRatio, radius);
+                setSize(radius * 2 * aspectRatio, radius * 2);
             }
         }
     }

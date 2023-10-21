@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import com.jopo.game.play.PlayerGameState;
 import com.jopo.game.space.Galaxy;
+import com.jopo.game.space.Planet;
+import com.jopo.game.space.SolarSystem;
 import com.jopo.utils.MathUtils;
 
 public class PqGameScreen implements Screen {
@@ -20,7 +22,6 @@ public class PqGameScreen implements Screen {
     private float galaxyZoom;
 
     private final Stage gameStage;
-    private final Stage uiStage;
 
     private final PqGameRenderer renderer;
     private final PqInputHandler input;
@@ -30,17 +31,14 @@ public class PqGameScreen implements Screen {
     public PqGameScreen(final PlanetaryConquest game) {
         input = game.inputHandler;
         galaxy = new Galaxy();
-        galaxy.populate((short)6);
+        galaxy.populate((short)5);
         galaxy.translate(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
         galaxyZoom = .5f;
         gameStage = new Stage(new ScreenViewport());
-        uiStage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, uiStage, input));
-
         ui = new PqGameUI(this);
-        uiStage.addActor(ui);
+        Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, ui, input));
 
-        renderer = new PqGameRenderer(gameStage, uiStage, galaxy);
+        renderer = new PqGameRenderer(gameStage, ui, galaxy);
 
         tmpVec2 = new Vector2(0, 0);
 
@@ -60,7 +58,7 @@ public class PqGameScreen implements Screen {
         if (input.isLeftMouseButtonPressed()) galaxy.translate(input.getDeltaMouse());
 
         galaxyZoom += -input.getScroll() / 20f;
-        galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 3f);
+        galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 2f);
         galaxy.zoom(galaxyZoom);
 
         if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) {
@@ -76,6 +74,14 @@ public class PqGameScreen implements Screen {
 
         galaxy.getGroup().setPosition((int)MathUtils.clamp(galaxy.getGroup().getX(), -5000 * galaxy.getGroup().getScaleX(), 5000),
                 ((int)MathUtils.clamp(galaxy.getGroup().getY(), -5000, 5000)));
+
+        for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
+            for (Planet planet : solarSystem.getPlanets()) {
+                planet.updateHitbox(galaxy.getGroup());
+                planet.listenForSelection();
+                planet.setSelected(MathUtils.hit(new MathUtils.Point(input.getMouseX(), input.getMouseY()), planet.getHitbox()));
+            }
+        }
     }
 
     @Override
@@ -112,6 +118,6 @@ public class PqGameScreen implements Screen {
     @Override
     public void dispose() {
         gameStage.dispose();
-        uiStage.dispose();
+        ui.dispose();
     }
 }
