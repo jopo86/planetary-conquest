@@ -15,7 +15,7 @@ public final class StarType {
 
 
     public static final class SmallYellow {
-        public static final int radius = 120;
+        public static final int radius = 90;
         public static Texture texture() {
             return PlanetaryConquest.yellowStarTexture;
         }
@@ -23,7 +23,7 @@ public final class StarType {
     }
 
     public static final class MediumYellow {
-        public static final int radius = 150;
+        public static final int radius = 120;
         public static Texture texture() {
             return PlanetaryConquest.yellowStarTexture;
         }
@@ -31,7 +31,7 @@ public final class StarType {
     }
 
     public static final class MediumBlue {
-        public static final int radius = 150;
+        public static final int radius = 120;
         public static Texture texture() {
             return PlanetaryConquest.blueStarTexture;
         }
@@ -39,7 +39,7 @@ public final class StarType {
     }
 
     public static final class LargeYellow {
-        public static final int radius = 180;
+        public static final int radius = 150;
         public static Texture texture() {
             return PlanetaryConquest.yellowStarTexture;
         }
@@ -47,7 +47,7 @@ public final class StarType {
     }
 
     public static final class LargeBlue {
-        public static final int radius = 180;
+        public static final int radius = 150;
         public static Texture texture() {
             return PlanetaryConquest.blueStarTexture;
         }

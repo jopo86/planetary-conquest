@@ -21,31 +21,31 @@ public class Star extends AstronomicalBody {
                 Texture texture = StarType.SmallYellow.texture();
                 setTexture(texture);
                 radius = StarType.SmallYellow.radius;
-                setSize(radius, radius);
+                setSize(radius * 2, radius * 2);
             }
             case StarType.MEDIUM_YELLOW -> {
                 Texture texture = StarType.MediumYellow.texture();
                 setTexture(texture);
                 radius = StarType.MediumYellow.radius;
-                setSize(radius, radius);
+                setSize(radius * 2, radius * 2);
             }
             case StarType.MEDIUM_BLUE -> {
                 Texture texture = StarType.MediumBlue.texture();
                 setTexture(texture);
                 radius = StarType.MediumBlue.radius;
-                setSize(radius, radius);
+                setSize(radius * 2, radius * 2);
             }
             case StarType.LARGE_YELLOW -> {
                 Texture texture = StarType.LargeYellow.texture();
                 setTexture(texture);
                 radius = StarType.LargeYellow.radius;
-                setSize(radius, radius);
+                setSize(radius * 2, radius * 2);
             }
             case StarType.LARGE_BLUE -> {
                 Texture texture = StarType.LargeBlue.texture();
                 setTexture(texture);
                 radius = StarType.LargeBlue.radius;
-                setSize(radius, radius);
+                setSize(radius * 2, radius * 2);
             }
         }
     }
