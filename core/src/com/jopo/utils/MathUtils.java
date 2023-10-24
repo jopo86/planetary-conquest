@@ -1,5 +1,7 @@
 package com.jopo.utils;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
+
 public class MathUtils {
 
     private MathUtils() {}
@@ -225,7 +227,6 @@ public class MathUtils {
     public static int randInt(int start, int end) {
         return (int)(start + Math.random() * (end - start));
     }
-
     public static float randFloat(float start, float end) {
         return (float)(start + Math.random() * (end - start));
     }
@@ -233,7 +234,6 @@ public class MathUtils {
     public static float degToRad(float deg) {
         return (float)(Math.PI / 180 * deg);
     }
-
     public static float radToDeg(float rad) {
         return (float)(180 / Math.PI * rad);
     }
@@ -241,8 +241,25 @@ public class MathUtils {
     public static int clamp(int val, int min, int max) {
         return (val < min ? min : (Math.min(val, max)));
     }
-
     public static float clamp(float val, float min, float max) {
         return (val < min ? min : (Math.min(val, max)));
+    }
+
+    public static Point applyGroupTransform(Point pt, Group group) {
+        return new Point(group.getX() + group.getScaleX() * pt.x, group.getY() + group.getScaleY() * pt.y);
+    }
+    public static Rectangle applyGroupTransform(Rectangle rect, Group group) {
+        return new Rectangle(
+                group.getX() + group.getScaleX() * rect.x,
+                group.getY() + group.getScaleY() * rect.x,
+                group.getScaleX() * rect.width, group.getScaleY() * rect.height
+        );
+    }
+    public static Circle applyGroupTransform(Circle circ, Group group) {
+        return new Circle(
+                group.getX() + group.getScaleX() * circ.x,
+                group.getY() + group.getScaleY() * circ.y,
+                group.getScaleX() * circ.radius
+        );
     }
 }

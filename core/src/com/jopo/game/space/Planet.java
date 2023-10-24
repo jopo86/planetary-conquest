@@ -1,10 +1,7 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.utils.Align;
 import com.jopo.game.core.PlanetaryConquest;
 import com.jopo.game.play.Player;
 import com.jopo.utils.ChanceEvent;
@@ -20,6 +17,8 @@ public class Planet extends AstronomicalBody {
     private ArrayList<ResourceBase> resourceBases;
     private int orbitRadius;
     private int orbitSpeed;
+    private int orbitOffsetX;
+    private int orbitOffsetY;
     private float orbitAngle;
     private boolean selected;
     private boolean selectedLastFrame;
@@ -29,7 +28,7 @@ public class Planet extends AstronomicalBody {
         habited = false;
         occupant = null;
         resourceBases = new ArrayList<>();
-        orbitRadius = orbitSpeed = 0;
+        orbitRadius = orbitSpeed = orbitOffsetX = orbitOffsetY = 0;
         orbitAngle = 0f;
         selected = false;
         selectedLastFrame = false;
@@ -42,7 +41,7 @@ public class Planet extends AstronomicalBody {
         occupant = null;
         resourceBases = new ArrayList<>();
         evalType();
-        orbitRadius = orbitSpeed = 0;
+        orbitRadius = orbitSpeed = orbitOffsetX = orbitOffsetY = 0;
         orbitAngle = 0f;
         selected = false;
         selectedLastFrame = false;
@@ -346,14 +345,14 @@ public class Planet extends AstronomicalBody {
     }
 
     public void orbitStep(float delta) {
-        orbitAngle += orbitSpeed * delta / 100f;
+        orbitAngle += orbitSpeed * delta;
         if (orbitAngle >= 360) orbitAngle = 0;
     }
 
     public void goToOrbitPosition(Star star) {
         setPosition(
-                (float)(star.getCenterX() + orbitRadius * Math.sin(orbitAngle) - getWidth() / 2f),
-                (float)(star.getCenterY() + orbitRadius * Math.cos(orbitAngle) - getHeight() / 2f)
+                (float)(star.getCenterX() + orbitRadius * Math.sin(MathUtils.degToRad(orbitAngle)) - getWidth() / 2f),
+                (float)(star.getCenterY() + orbitRadius * Math.cos(MathUtils.degToRad(orbitAngle)) - getHeight() / 2f)
         );
     }
 

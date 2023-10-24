@@ -53,12 +53,16 @@ public class PqGameRenderer {
         shapeRenderer.setColor(.23f, .2f, .27f, 0f);
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
             for (Planet planet : solarSystem.getPlanets()) {
-                float radius = MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter());
+                MathUtils.Circle renderCirc = MathUtils.applyGroupTransform(new MathUtils.Circle(
+                        solarSystem.getStar().getCenterX(),
+                        solarSystem.getStar().getCenterY(),
+                        MathUtils.distance(planet.getCenter(), solarSystem.getStar().getCenter())
+                ), galaxy.getGroup());
                 shapeRenderer.circle(
-                        galaxy.getGroup().getX() + galaxy.getGroup().getScaleX() * solarSystem.getStar().getCenterX(),
-                        galaxy.getGroup().getY() + galaxy.getGroup().getScaleY() * solarSystem.getStar().getCenterY(),
-                        galaxy.getGroup().getScaleX() * radius,
-                        (int)((new MathUtils.Circle(0, 0, radius).getCircumference()) / 20f)
+                        renderCirc.getX(),
+                        renderCirc.getY(),
+                        renderCirc.getRadius(),
+                        (int)(renderCirc.getCircumference() / 20f)
                 );
             }
         }
