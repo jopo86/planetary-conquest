@@ -4,20 +4,23 @@ import java.io.Serializable;
 
 public class PlayerSaveState implements Serializable {
 
-    private final Player player;
     private int wins;
     private int level;
     private int xp;
     private int totalXP;
 
-    public PlayerSaveState(Player player, int wins, int level) {
-        this.player = player;
-        this.wins = wins;
-        this.level = level;
+    public PlayerSaveState() {
+        this.wins = 0;
+        this.level = 0;
+        this.xp = 0;
+        this.totalXP = 0;
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerSaveState(int wins, int level, int xp, int totalXP) {
+        this.wins = wins;
+        this.level = level;
+        this.xp = xp;
+        this.totalXP = totalXP;
     }
 
     public int getWins() {

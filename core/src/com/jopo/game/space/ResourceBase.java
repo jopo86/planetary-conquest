@@ -1,17 +1,17 @@
 package com.jopo.game.space;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.jopo.game.play.PlayerGameState;
+import com.jopo.game.play.Player;
 
 public class ResourceBase {
 
-    private byte type;
-    private PlayerGameState receiver;
+    private final byte type;
+    private Player receiver;
     private short amount;
     private short level;
     private Sprite sprite;
 
-    public ResourceBase(byte type, PlayerGameState receiver) {
+    public ResourceBase(byte type, Player receiver) {
         this.type = type;
         this.receiver = receiver;
         level = 1;
@@ -39,20 +39,24 @@ public class ResourceBase {
         return amount;
     }
 
-    public PlayerGameState getReceiver() {
+    public Player getReceiver() {
         return receiver;
+    }
+
+    public void setReceiver(Player receiver) {
+        this.receiver = receiver;
     }
 
     public void give() {
         switch (type) {
             case ResourceBaseType.WOOD -> {
-                receiver.addWood(amount);
+                receiver.getGameState().addWood(amount);
             }
             case ResourceBaseType.STONE -> {
-                receiver.addStone(amount);
+                receiver.getGameState().addStone(amount);
             }
             case ResourceBaseType.METAL -> {
-                receiver.addMetal(amount);
+                receiver.getGameState().addMetal(amount);
             }
         }
     }
@@ -60,13 +64,13 @@ public class ResourceBase {
     public void give(float multiplier) {
         switch (type) {
             case ResourceBaseType.WOOD -> {
-                receiver.addWood((int)(amount * multiplier));
+                receiver.getGameState().addWood((int)(amount * multiplier));
             }
             case ResourceBaseType.STONE -> {
-                receiver.addStone((int)(amount * multiplier));
+                receiver.getGameState().addStone((int)(amount * multiplier));
             }
             case ResourceBaseType.METAL -> {
-                receiver.addMetal((int)(amount * multiplier));
+                receiver.getGameState().addMetal((int)(amount * multiplier));
             }
         }
     }

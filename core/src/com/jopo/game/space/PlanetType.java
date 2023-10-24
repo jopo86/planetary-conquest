@@ -3,6 +3,8 @@ package com.jopo.game.space;
 import com.badlogic.gdx.graphics.Texture;
 import com.jopo.game.core.PlanetaryConquest;
 
+import java.util.HashMap;
+
 public final class PlanetType {
 
     private PlanetType() {}
@@ -24,6 +26,27 @@ public final class PlanetType {
     public static final byte LARGE_LAVA = 14;
     public static final byte LARGE_MARS = 15;
     public static final byte LARGE_SATURN = 16;
+
+    public static final HashMap<Byte, String> typeStr = new HashMap<>() {{
+        put((byte)-1, "None");
+        put(SMALL_BLUE, "Small Blue");
+        put(SMALL_GRAY, "Small Gray");
+        put(SMALL_LAVA, "Small Lava");
+        put(SMALL_MARS, "Small Mars");
+        put(MEDIUM_BLUE, "Medium Blue");
+        put(MEDIUM_BLUE_RINGS, "Medium Blue Rings");
+        put(MEDIUM_EARTH, "Medium Earth");
+        put(MEDIUM_GRAY, "Medium Gray");
+        put(MEDIUM_LAVA, "Medium Lava");
+        put(MEDIUM_MARS, "Medium Mars");
+        put(LARGE_BLUE, "Large Blue");
+        put(LARGE_BLUE_RINGS, "Large Blue Rings");
+        put(LARGE_EARTH, "Large Earth");
+        put(LARGE_GRAY, "Large Gray");
+        put(LARGE_LAVA, "Large Lava");
+        put(LARGE_MARS, "Large Mars");
+        put(LARGE_SATURN, "Large Saturn");
+    }};
 
     public static final class SmallBlue {
         public static final int radius = 60;

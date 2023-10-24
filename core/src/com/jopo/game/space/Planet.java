@@ -1,8 +1,11 @@
 package com.jopo.game.space;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.jopo.game.core.PlanetaryConquest;
+import com.jopo.game.core.PqInputHandler;
 import com.jopo.game.play.Player;
 import com.jopo.utils.ChanceEvent;
 import com.jopo.utils.MathUtils;
@@ -13,38 +16,83 @@ public class Planet extends AstronomicalBody {
 
     private byte type;
     private boolean habited;
+    private boolean spaceship;
     private Player occupant;
     private ArrayList<ResourceBase> resourceBases;
     private int orbitRadius;
     private int orbitSpeed;
-    private int orbitOffsetX;
-    private int orbitOffsetY;
     private float orbitAngle;
+    private boolean hovered;
+    private boolean hoveredLastFrame;
     private boolean selected;
     private boolean selectedLastFrame;
 
     public Planet() {
         super();
         habited = false;
+        spaceship = false;
         occupant = null;
         resourceBases = new ArrayList<>();
-        orbitRadius = orbitSpeed = orbitOffsetX = orbitOffsetY = 0;
+        orbitRadius = orbitSpeed = 0;
         orbitAngle = 0f;
-        selected = false;
-        selectedLastFrame = false;
+        hovered = hoveredLastFrame = selected = selectedLastFrame = false;
     }
 
     public Planet(byte type) {
         super();
         this.type = type;
         habited = false;
+        spaceship = false;
         occupant = null;
         resourceBases = new ArrayList<>();
         evalType();
-        orbitRadius = orbitSpeed = orbitOffsetX = orbitOffsetY = 0;
+        orbitRadius = orbitSpeed = 0;
         orbitAngle = 0f;
-        selected = false;
-        selectedLastFrame = false;
+        hovered = false;
+        hovered = hoveredLastFrame = selected = selectedLastFrame = false;
+    }
+
+    public Player take(Player taker) { // returns the previous occupant of the planet
+        if (occupant == null) {
+            occupant = taker;
+            updateResourceBaseOwnership();
+            return null;
+        } else {
+            Player tmp = occupant;
+            occupant = taker;
+            updateResourceBaseOwnership();
+            return tmp;
+        }
+    }
+
+    private void updateResourceBaseOwnership() {
+        for (ResourceBase resourceBase : resourceBases) {
+            resourceBase.setReceiver(occupant);
+        }
+    }
+
+    public void orbitStep(float delta) {
+        orbitAngle += orbitSpeed * delta;
+        if (orbitAngle >= 360) orbitAngle = 0;
+    }
+
+    public void goToOrbitPosition(Star star) {
+        setPosition(
+                (float)(star.getCenterX() + orbitRadius * Math.sin(MathUtils.degToRad(orbitAngle)) - getWidth() / 2f),
+                (float)(star.getCenterY() + orbitRadius * Math.cos(MathUtils.degToRad(orbitAngle)) - getHeight() / 2f)
+        );
+    }
+
+    public void giveResources() {
+        for (ResourceBase resourceBase : resourceBases) {
+            resourceBase.give();
+        }
+    }
+
+    public void giveResources(float multiplier) {
+        for (ResourceBase resourceBase : resourceBases) {
+            resourceBase.give(multiplier);
+        }
     }
 
     @Override
@@ -213,13 +261,19 @@ public class Planet extends AstronomicalBody {
         return planet;
     }
 
-    public void listenForSelection() {
-        if (selected != selectedLastFrame) onSelectedChange();
+    public void listen() {
+        if (hovered != hoveredLastFrame || selected != selectedLastFrame) onHoverSelectionChange();
+        hoveredLastFrame = hovered;
         selectedLastFrame = selected;
     }
 
-    private void onSelectedChange() {
-        if (selected) switch (type) {
+    private void onHoverSelectionChange() {
+        if (hovered || selected) selectedTexture();
+        else normalTexture();
+    }
+
+    public void selectedTexture() {
+        switch (type) {
             case PlanetType.SMALL_BLUE, PlanetType.MEDIUM_BLUE, PlanetType.LARGE_BLUE -> {
                 setTexture(PlanetaryConquest.bluePlanetSelectedTexture);
             }
@@ -241,7 +295,11 @@ public class Planet extends AstronomicalBody {
             case PlanetType.LARGE_SATURN -> {
                 setTexture(PlanetaryConquest.saturnPlanetSelectedTexture);
             }
-        } else switch (type) {
+        }
+    }
+
+    public void normalTexture() {
+        switch (type) {
             case PlanetType.SMALL_BLUE, PlanetType.MEDIUM_BLUE, PlanetType.LARGE_BLUE -> {
                 setTexture(PlanetaryConquest.bluePlanetTexture);
             }
@@ -279,6 +337,10 @@ public class Planet extends AstronomicalBody {
         return habited;
     }
 
+    public boolean hasSpaceship() {
+        return spaceship;
+    }
+
     public Player getOccupant() {
         return occupant;
     }
@@ -308,8 +370,16 @@ public class Planet extends AstronomicalBody {
         return orbitAngle;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
     public void setHabited(boolean habited) {
         this.habited = habited;
+    }
+
+    public void setHasSpaceship(boolean spaceship) {
+        this.spaceship = spaceship;
     }
 
     public void setOccupant(Player occupant) {
@@ -324,8 +394,8 @@ public class Planet extends AstronomicalBody {
         resourceBases.add(resourceBase);
     }
 
-    public boolean isSelected() {
-        return selected;
+    public boolean isHovered() {
+        return hovered;
     }
 
     public void setOrbitRadius(int orbitRadius) {
@@ -340,31 +410,11 @@ public class Planet extends AstronomicalBody {
         this.orbitAngle = orbitAngle;
     }
 
+    public void setHovered(boolean hovered) {
+        this.hovered = hovered;
+    }
+
     public void setSelected(boolean selected) {
         this.selected = selected;
-    }
-
-    public void orbitStep(float delta) {
-        orbitAngle += orbitSpeed * delta;
-        if (orbitAngle >= 360) orbitAngle = 0;
-    }
-
-    public void goToOrbitPosition(Star star) {
-        setPosition(
-                (float)(star.getCenterX() + orbitRadius * Math.sin(MathUtils.degToRad(orbitAngle)) - getWidth() / 2f),
-                (float)(star.getCenterY() + orbitRadius * Math.cos(MathUtils.degToRad(orbitAngle)) - getHeight() / 2f)
-        );
-    }
-
-    public void giveResources() {
-        for (ResourceBase resourceBase : resourceBases) {
-            resourceBase.give();
-        }
-    }
-
-    public void giveResources(float multiplier) {
-        for (ResourceBase resourceBase : resourceBases) {
-            resourceBase.give(multiplier);
-        }
     }
 }

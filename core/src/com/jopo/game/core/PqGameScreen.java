@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import com.jopo.game.play.PlayerGameState;
+import com.jopo.game.play.Player;
 import com.jopo.game.space.Galaxy;
 import com.jopo.game.space.Planet;
 import com.jopo.game.space.SolarSystem;
@@ -44,22 +44,41 @@ public class PqGameScreen implements Screen {
 
     }
 
-    public void attackSequence(PlayerGameState attacker, PlayerGameState defender) {
+    public void attackSequence(Player attacker, Player defender) {
 
     }
 
-    public void buildUpgradeSequence(PlayerGameState player) {
+    public void buildUpgradeSequence(Player player) {
 
     }
 
     private void update(float delta) {
-        input.update();
-
-        if (input.isLeftMouseButtonPressed()) galaxy.translate(input.getDeltaMouse());
+        processInput();
 
         galaxyZoom += -input.getScroll() / 20f;
         galaxyZoom = MathUtils.clamp(galaxyZoom, .1f, 2f);
         galaxy.zoom(galaxyZoom);
+
+        galaxy.getGroup().setPosition((int)MathUtils.clamp(galaxy.getGroup().getX(), -5000 * galaxy.getGroup().getScaleX(), 5000),
+                ((int)MathUtils.clamp(galaxy.getGroup().getY(), -3000, 3000)));
+
+        boolean cursorPointer = false;
+        for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
+            for (Planet planet : solarSystem.getPlanets()) {
+                planet.updateHitbox(galaxy.getGroup());
+                planet.listen();
+                planet.setHovered(MathUtils.hit(new MathUtils.Point(input.getMouseX(), input.getMouseY()), planet.getHitbox()));
+                if (planet.isHovered()) cursorPointer = true;
+            }
+        }
+        if (cursorPointer) PqInputHandler.setCursor(PqInputHandler.CursorType.POINTER);
+        else PqInputHandler.setCursor(PqInputHandler.CursorType.DEFAULT);
+    }
+
+    private void processInput() {
+        input.update();
+
+        if (input.isLeftMouseButtonPressed()) galaxy.translate(input.getDeltaMouse());
 
         if (input.isKeyTapped(Input.Keys.ALT_LEFT) || input.isKeyTapped(Input.Keys.ALT_RIGHT)) {
             renderer.toggleShouldDrawRings();
@@ -72,16 +91,23 @@ public class PqGameScreen implements Screen {
             galaxy.getGroup().addAction(mta);
         }
 
-        galaxy.getGroup().setPosition((int)MathUtils.clamp(galaxy.getGroup().getX(), -5000 * galaxy.getGroup().getScaleX(), 5000),
-                ((int)MathUtils.clamp(galaxy.getGroup().getY(), -5000, 5000)));
-
-        for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
-            for (Planet planet : solarSystem.getPlanets()) {
-                planet.updateHitbox(galaxy.getGroup());
-                planet.listenForSelection();
-                planet.setSelected(MathUtils.hit(new MathUtils.Point(input.getMouseX(), input.getMouseY()), planet.getHitbox()));
+        if (input.isLeftMouseButtonTapped()) {
+            for (SolarSystem solarSystem : galaxy.getSolarSystems()) {
+                for (Planet planet : solarSystem.getPlanets()) {
+                    if (planet.isHovered()) {
+                        planet.setSelected(true);
+                        continue;
+                    }
+                    planet.setSelected(false);
+                }
             }
         }
+
+        ui.update();
+    }
+
+    public Galaxy getGalaxy() {
+        return galaxy;
     }
 
     @Override

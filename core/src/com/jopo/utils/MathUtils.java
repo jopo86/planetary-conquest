@@ -251,8 +251,9 @@ public class MathUtils {
     public static Rectangle applyGroupTransform(Rectangle rect, Group group) {
         return new Rectangle(
                 group.getX() + group.getScaleX() * rect.x,
-                group.getY() + group.getScaleY() * rect.x,
-                group.getScaleX() * rect.width, group.getScaleY() * rect.height
+                group.getY() + group.getScaleY() * rect.y,
+                group.getScaleX() * rect.width,
+                group.getScaleY() * rect.height
         );
     }
     public static Circle applyGroupTransform(Circle circ, Group group) {
