@@ -13,7 +13,7 @@ public class PqGameUI extends Stage {
     private final PqGameScreen gameScreen;
 
     private final Table topRight;
-    private final Table topLeft;
+    private final Table bottomRight;
     private final Label selectedPlanet;
     private byte selectedPlanetType;
     private byte selectedPlanetTypeLastFrame;
@@ -25,17 +25,17 @@ public class PqGameUI extends Stage {
         topRight.align(Align.topRight);
         topRight.setFillParent(true);
 
-        topLeft = new Table();
-        topLeft.align(Align.topLeft);
-        topLeft.setFillParent(true);
+        bottomRight = new Table();
+        bottomRight.align(Align.bottomRight);
+        bottomRight.setFillParent(true);
 
         topRight.padTop(30f).padRight(30f).add(new Label("[ALT] Show/Hide Rings", PlanetaryConquest.skin, "size-32")).right().row();
         topRight.add(new Label("[CTRL] Center", PlanetaryConquest.skin, "size-32")).right().row();
 
         selectedPlanet = new Label("Planet Selected: none", PlanetaryConquest.skin, "size-32");
-        topLeft.padTop(30f).padLeft(30f).add(selectedPlanet).left();
+        bottomRight.padBottom(30f).padRight(30f).add(selectedPlanet).right();
 
-        addActor(topLeft);
+        addActor(bottomRight);
         addActor(topRight);
     }
 
