@@ -14,6 +14,7 @@ import com.jopo.game.space.Galaxy;
 import com.jopo.game.space.Planet;
 import com.jopo.game.space.SolarSystem;
 import com.jopo.utils.MathUtils;
+import com.jopo.utils.TimeUtils;
 
 public class PqGameScreen implements Screen {
 
@@ -29,6 +30,8 @@ public class PqGameScreen implements Screen {
     private final Vector2 tmpVec2;
 
     public PqGameScreen(final PlanetaryConquest game) {
+        TimeUtils.Stopwatch.start();
+
         input = game.inputHandler;
         galaxy = new Galaxy();
         galaxy.populate((short)6);
@@ -42,6 +45,7 @@ public class PqGameScreen implements Screen {
 
         tmpVec2 = new Vector2(0, 0);
 
+        System.out.println("game creation: " + TimeUtils.Stopwatch.end() + "ms");
     }
 
     public void attackSequence(Player attacker, Player defender) {

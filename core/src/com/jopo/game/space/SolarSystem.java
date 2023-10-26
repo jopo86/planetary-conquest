@@ -1,6 +1,8 @@
 package com.jopo.game.space;
 
 import com.jopo.game.core.PqConstants;
+import com.jopo.game.play.Player;
+import com.jopo.utils.ChanceEvent;
 import com.jopo.utils.MathUtils;
 
 import java.util.ArrayList;

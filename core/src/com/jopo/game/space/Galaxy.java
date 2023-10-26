@@ -22,7 +22,6 @@ public class Galaxy {
         solarSystems = new ArrayList<>();
         blackHole = BlackHole.randBlackHole();
         blackHole.setPosition(0 - blackHole.getImageWidth(), 0 - blackHole.getImageHeight());
-        blackHole.setOrigin(Align.center);
         background = new Image(PlanetaryConquest.galaxyBackgroundTexture);
         background.setScale(1.5f);
         background.setOrigin(Align.center);

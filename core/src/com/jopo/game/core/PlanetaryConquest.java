@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.jopo.utils.TimeUtils;
 
 public class PlanetaryConquest extends Game {
 
@@ -42,6 +43,8 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void create () {
+		TimeUtils.Stopwatch.start();
+
 		inputHandler = new PqInputHandler();
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
 
@@ -71,6 +74,8 @@ public class PlanetaryConquest extends Game {
 		galaxyBackgroundTexture = new Texture(Gdx.files.internal("textures\\galaxy-background.png"));
 
 		setScreen(new PqTitleScreen(this));
+
+		System.out.println("init: " + TimeUtils.Stopwatch.end() + "ms");
 	}
 
 	@Override

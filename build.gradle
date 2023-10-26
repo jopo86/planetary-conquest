@@ -39,8 +39,8 @@ allprojects {
     }
 
     tasks.withType(JavaCompile).configureEach {
-        sourceCompatibility = '20'
-        targetCompatibility = '20'
+        sourceCompatibility = '17'
+        targetCompatibility = '17'
     }
 }
 
