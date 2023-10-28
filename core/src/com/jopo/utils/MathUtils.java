@@ -189,21 +189,30 @@ public class MathUtils {
         }
     }
 
-    public static float distance(Point a, Point b) {
-        return (float)Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
-    }
-    public static float distance(Point pt, float x, float y) {
-        return (float)Math.sqrt(Math.pow(x - pt.x, 2) + Math.pow(y - pt.y, 2));
-    }
     public static float distance(float x1, float y1, float x2, float y2) {
         return (float)Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+    public static float distance(Point pt, float x, float y) {
+        return distance(pt.x, pt.y, x, y);
+    }
+    public static float distance(float x, float y, Point pt) {
+        return distance(pt, x, y);
+    }
+    public static float distance(Point a, Point b) {
+        return distance(a, b.x, b.y);
     }
 
     public static boolean hit(Point pt, Rectangle rect) {
         return pt.x >= rect.x && pt.x <= rect.x + rect.width && pt.y >= rect.y && pt.y <= rect.y + rect.height;
     }
+    public static boolean hit(Rectangle rect, Point pt) {
+        return hit(pt, rect);
+    }
     public static boolean hit(Point pt, Circle circ) {
         return distance(pt, circ.center) <= circ.radius;
+    }
+    public static boolean hit(Circle circ, Point pt) {
+        return hit(pt, circ);
     }
     public static boolean hit(Rectangle rect1, Rectangle rect2) {
         return rect1.x + rect1.width >= rect2.x && rect1.x <= rect2.x + rect2.width && rect1.y + rect1.height >= rect2.y && rect1.y <= rect2.y + rect2.height;
@@ -222,6 +231,9 @@ public class MathUtils {
         else if (circ.center.y > rect.y + rect.height) testY = rect.y + rect.height;
 
         return (distance(circ.center, testX, testY) <= circ.radius);
+    }
+    public static boolean hit(Circle circ, Rectangle rect) {
+        return hit(rect, circ);
     }
 
     public static int randInt(int start, int end) {
@@ -243,6 +255,20 @@ public class MathUtils {
     }
     public static float clamp(float val, float min, float max) {
         return (val < min ? min : (Math.min(val, max)));
+    }
+
+    public static int clampFloor(int val, int min) {
+        return (Math.max(val, min));
+    }
+    public static float clampFloor(float val, float min) {
+        return (Math.max(val, min));
+    }
+
+    public static int clampCeil(int val, int max) {
+        return (Math.min(val, max));
+    }
+    public static float clampCeil(float val, float max) {
+        return (Math.min(val, max));
     }
 
     public static Point applyGroupTransform(Point pt, Group group) {

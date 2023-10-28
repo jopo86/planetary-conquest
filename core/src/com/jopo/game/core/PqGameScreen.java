@@ -14,6 +14,7 @@ import com.jopo.game.space.Galaxy;
 import com.jopo.game.space.Planet;
 import com.jopo.game.space.SolarSystem;
 import com.jopo.utils.MathUtils;
+import com.jopo.utils.RuntimeStats;
 import com.jopo.utils.TimeUtils;
 
 public class PqGameScreen implements Screen {
@@ -30,7 +31,8 @@ public class PqGameScreen implements Screen {
     private final Vector2 tmpVec2;
 
     public PqGameScreen(final PlanetaryConquest game) {
-        TimeUtils.Stopwatch.start();
+        TimeUtils.Stopwatch stopwatch = new TimeUtils.Stopwatch(TimeUtils.MILLIS);
+        stopwatch.start();
 
         input = game.inputHandler;
         galaxy = new Galaxy();
@@ -45,7 +47,7 @@ public class PqGameScreen implements Screen {
 
         tmpVec2 = new Vector2(0, 0);
 
-        System.out.println("game creation: " + TimeUtils.Stopwatch.end() + "ms");
+        RuntimeStats.addStat("GAME CREATION", TimeUtils.formatMillis(stopwatch.end()));
     }
 
     public void attackSequence(Player attacker, Player defender) {
@@ -64,7 +66,7 @@ public class PqGameScreen implements Screen {
         galaxy.zoom(galaxyZoom);
 
         galaxy.getGroup().setPosition((int)MathUtils.clamp(galaxy.getGroup().getX(), -5000 * galaxy.getGroup().getScaleX(), 5000),
-                ((int)MathUtils.clamp(galaxy.getGroup().getY(), -3000, 3000)));
+                ((int)MathUtils.clamp(galaxy.getGroup().getY(), -6000, 5000)));
 
         boolean cursorPointer = false;
         for (SolarSystem solarSystem : galaxy.getSolarSystems()) {

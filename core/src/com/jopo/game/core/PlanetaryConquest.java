@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.jopo.utils.RuntimeStats;
 import com.jopo.utils.TimeUtils;
 
 public class PlanetaryConquest extends Game {
@@ -43,13 +44,16 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void create () {
-		TimeUtils.Stopwatch.setMode(TimeUtils.MILLIS);
-		TimeUtils.Stopwatch.start();
-		System.out.println(TimeUtils.getDate());
+		TimeUtils.Stopwatch stopwatch = new TimeUtils.Stopwatch(TimeUtils.MILLIS);
+		stopwatch.start();
+		init();
+		setScreen(new PqTitleScreen(this));
+		RuntimeStats.addStat("INIT", TimeUtils.formatMillis(stopwatch.end()));
+	}
 
+	private void init() {
 		inputHandler = new PqInputHandler();
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
-
 		bluePlanetTexture = new Texture(Gdx.files.internal("textures\\planet-blue.png"));
 		bluePlanetRingsTexture = new Texture(Gdx.files.internal("textures\\planet-blue-rings.png"));
 		earthPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-earth.png"));
@@ -57,7 +61,6 @@ public class PlanetaryConquest extends Game {
 		lavaPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-lava.png"));
 		marsPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-mars.png"));
 		saturnPlanetTexture = new Texture(Gdx.files.internal("textures\\planet-saturn.png"));
-
 		bluePlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-blue-selected.png"));
 		bluePlanetRingsSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-blue-rings-selected.png"));
 		earthPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-earth-selected.png"));
@@ -65,19 +68,12 @@ public class PlanetaryConquest extends Game {
 		lavaPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-lava-selected.png"));
 		marsPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-mars-selected.png"));
 		saturnPlanetSelectedTexture = new Texture(Gdx.files.internal("textures\\planet-saturn-selected.png"));
-
 		yellowStarTexture = new Texture(Gdx.files.internal("textures\\star-yellow.png"));
 		blueStarTexture = new Texture(Gdx.files.internal("textures\\star-blue.png"));
 		redStarTexture = new Texture(Gdx.files.internal("textures\\star-red.png"));
-
 		blackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole.png"));
 		blueBlackHoleTexture = new Texture(Gdx.files.internal("textures\\black-hole-blue.png"));
-
 		galaxyBackgroundTexture = new Texture(Gdx.files.internal("textures\\galaxy-background.png"));
-
-		setScreen(new PqTitleScreen(this));
-
-		System.out.println("init: " + TimeUtils.Stopwatch.end() + "ms");
 	}
 
 	@Override
@@ -87,6 +83,7 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void dispose () {
+		System.out.println(RuntimeStats.format());
 		skin.dispose();
 		bluePlanetTexture.dispose();
 		bluePlanetRingsTexture.dispose();
