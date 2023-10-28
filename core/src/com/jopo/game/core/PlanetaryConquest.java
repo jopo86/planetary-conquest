@@ -43,7 +43,9 @@ public class PlanetaryConquest extends Game {
 	
 	@Override
 	public void create () {
+		TimeUtils.Stopwatch.setMode(TimeUtils.MILLIS);
 		TimeUtils.Stopwatch.start();
+		System.out.println(TimeUtils.getDate());
 
 		inputHandler = new PqInputHandler();
 		skin = new Skin(Gdx.files.internal("ui\\uiskin.json"));
