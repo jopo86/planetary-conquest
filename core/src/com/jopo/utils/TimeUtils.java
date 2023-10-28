@@ -330,7 +330,7 @@ public class TimeUtils {
             }).start();
         }
 
-        public long getTime() {
+        public long getTimeLeft() {
             return amount - (end - start);
         }
 
@@ -390,7 +390,7 @@ public class TimeUtils {
             }).start();
         }
 
-        public long getTime() {
+        public long getTimeLeft() {
             if (mode == NANOS) {
                 return (long)MathUtils.clampFloor(amount - (nanos() - start), 0);
             }

@@ -9,17 +9,15 @@ import com.jopo.utils.TimeUtils;
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-//		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-//
-//		config.setTitle("Planetary Conquest");
-//		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
-////		config.setWindowedMode(1280, 720);
-//		config.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate);
-//		config.setIdleFPS(30);
-//		config.setResizable(false);
-//
-//		new Lwjgl3Application(new PlanetaryConquest(), config);
+		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 
-		TimeUtils.CountdownEvent countdownEvent = new TimeUtils.CountdownEvent(TimeUtils.SECONDS);
+		config.setTitle("Planetary Conquest");
+		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+//		config.setWindowedMode(1280, 720);
+		config.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate);
+		config.setIdleFPS(30);
+		config.setResizable(false);
+
+		new Lwjgl3Application(new PlanetaryConquest(), config);
 	}
 }
